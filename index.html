@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/style.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400&family=Roboto+Slab:wght@300;400;700&family=Roboto:wght@300;400;500;700&family=Smythe&display=swap" rel="stylesheet">
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+  <title>Frontend Mentor | In-browser markdown editor</title>
+</head>
+<body>
+  
+  <!-- Sidebar start -->
+    <section id="sb-wr">
+      <div class="sb-title-wr">
+        <h2 class="sb-title">MY DOCUMENTS</h2>
+      </div>
+      <div class="sb-newdoc-btn-wr">
+        <button id="newdoc-btn">+New Document</button>
+      </div>
+      <div class="sb-doclist-wr">
+
+        <div class="sb-doc-wr">
+          <img src="/assets/icon-document.svg" alt="document-icon" class="document-icon">
+          <div class="sb-doc-details-wr">
+            <p class="sb-doc-date">01 April 2022</p>
+            <p class="sb-doc-name">untitled-document.md</p>
+          </div>
+        </div>
+
+        <div class="sb-doc-wr">
+          <img src="/assets/icon-document.svg" alt="document-icon" class="document-icon">
+          <div class="sb-doc-details-wr">
+            <p class="sb-doc-date">01 April 2022</p>
+            <p class="sb-doc-name">untitled-document.md</p>
+          </div>
+        </div>
+
+      </div>
+      <div class="sb-theme-wr">
+        <img src="/assets/icon-dark-mode.svg" alt="dark-mode-icon" class="theme-icon">
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider round"></span>
+        </label>
+        <img src="/assets/icon-light-mode.svg" alt="light-mode-icon" class="theme-icon">
+      </div>
+    </section>
+  <!-- Sidebar end -->
+
+  <!-- Header start -->
+    <header id="hdr-wr">
+      <div class="hdr-menu-icon-wr">
+        <img src="/assets/icon-menu.svg" alt="menu-icon" id="hdr-menu-icon">
+      </div>
+      <div class="hdr-title-wr">
+        <h1>MARKDOWN</h1>
+      </div>
+      <div class="hdr-main-wr">
+        <div class="hdr-doc-wr">
+          <img src="/assets/icon-document.svg" alt="document-icon" class="hdr-doc-icon">
+          <div class="hdr-doc-details-wr">
+            <p class="hdr-doc-title">Document Name</p>
+            <p class="hdr-doc-name">welcome.md</p>
+          </div>
+        </div>
+        <div class="hdr-doc-btns-wr">
+          <img src="/assets/icon-delete.svg" alt="delete-icon" class="hdr-del-icon">
+          <button id="save-doc-btn">
+            <img src="/assets/icon-save.svg" alt="save-icon" class="save-doc-icon">
+            Save Changes
+          </button>
+        </div>
+      </div>
+    </header>
+
+  <!-- Header end -->
+
+  <!-- Main start -->
+    <main id="main-wr">
+      <div class="markdown-col">
+        <div class="markdown-hdr-wr">
+          <h3>MARKDOWN</h3>
+        </div>
+        <div class="markdown-content">
+          <!-- TODO Markdown Content Here -->
+        </div>
+      </div>
+      <div class="preview-col">
+        <div class="preview-hdr-wr">
+          <h3>PREVIEW</h3>
+          <img src="/assets/icon-show-preview.svg" alt="preview-icon" class="preview-icon">
+        </div>
+        <div class="preview-content">
+          <!-- TODO Preview Content Here -->
+        </div>
+      </div>
+    </main>
+  <!-- Main end -->
+  
+  <!-- TODO Modal start -->
+
+  <!-- Modal end -->
+
+</body>
+</html>
