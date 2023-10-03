@@ -1,4 +1,8 @@
-
+html, body {
+  height: 100%;
+  margin: 0;
+  background-color: var(--grey-1000);
+}
 
 /* Sidebar */
 #sb-wr {
@@ -90,6 +94,42 @@ h1 {
 #save-doc-btn:hover {
   background-color: var(--orange-hover);
 }
+
+/* Main */
+
+#main-wr {
+  display: flex;
+}
+
+.markdown-col, .preview-col {
+  width: 50vw;;
+  display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.markdown-col {
+  border-right: var(--grey-600) solid 1px;
+}
+
+.main-hdr {
+  display: flex;
+  align-items: center;
+  height: 42px;
+  padding: 0 17px;
+  background-color: var(--grey-900);
+}
+
+.preview-hdr-wr {
+  display: flex;
+  justify-content: space-between;
+}
+
+.markdown-content, .preview-content {
+  flex-grow: 1;
+  padding: 15px;
+}
+
 
 
 
