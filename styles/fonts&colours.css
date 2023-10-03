@@ -63,24 +63,29 @@
     font-family: 'Roboto Slab', serif;
     font-weight: 700;
     font-size: 24px;
+    color: white;
+    margin: 12px 0;
 }
 
 .p-h4 {
     font-family: 'Roboto Slab', serif;
     font-weight: 700;
     font-size: 20px;
+    color: white;
 }
 
 .p-h5 {
     font-family: 'Roboto Slab', serif;
     font-weight: 700;
     font-size: 16px;
+    color: white;
 }
 
 .p-h6 {
     font-family: 'Roboto Slab', serif;
     font-weight: 700;
     font-size: 14px;
+    color: var(--orange);
 }
 
 .p-para {
@@ -88,12 +93,47 @@
     font-weight: 400;
     font-size: 14px;
     color: var(--grey-400);
+    line-height: 24px;
 }
 
 .p-blockquote {
     font-family: 'Roboto Slab', serif;
     font-weight: 700;
     font-size: 14px;
+    color: white;
+    background-color: var(--grey-800);
+    padding: 22px 20px;
+    line-height: 24px;
+    border-radius: 4px;
+    border-left: var(--orange ) 4px solid;
+    margin: 8px 0;
+}
+
+.p-code-wr {
+    padding: 22px 20px;
+    margin: 8px 0;
+    border-radius: 4px;
+    background-color: var(--grey-800);
+}
+
+.p-ol, .p-ul {
+    margin-left: 30px;
+    line-height: 28px;
+    color: var(--grey-400);
+    font-family: 'Roboto Slab', serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--grey-400);
+}
+
+.p-ul li::marker{
+    color: var(--orange);
+}
+
+li, .p-ol li {
+    padding-left: 20px;
+    margin-left: 10px;
+    vertical-align: center;
 }
 
 /* Colours */
