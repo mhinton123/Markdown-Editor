@@ -72,6 +72,7 @@
     font-weight: 700;
     font-size: 20px;
     color: white;
+    margin: 12px 0;
 }
 
 .p-h5 {
@@ -79,6 +80,7 @@
     font-weight: 700;
     font-size: 16px;
     color: white;
+    margin: 12px 0;
 }
 
 .p-h6 {
@@ -86,6 +88,7 @@
     font-weight: 700;
     font-size: 14px;
     color: var(--orange);
+    margin: 12px 0;
 }
 
 .p-para {

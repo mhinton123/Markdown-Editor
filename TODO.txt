@@ -1,0 +1,2 @@
+-- create the text area for the markdown input
+-- style sidebar

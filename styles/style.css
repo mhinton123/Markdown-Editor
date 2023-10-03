@@ -115,7 +115,6 @@ h1 {
   width: 50vw;;
   display: flex;
     flex-direction: column;
-    height: 100%;
 }
 
 .markdown-col {
