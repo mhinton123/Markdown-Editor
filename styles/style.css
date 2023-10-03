@@ -38,7 +38,7 @@ ul {
    padding: 23px;
    display: flex;
    flex-direction: column;
-   /* display: none; */
+   display: none;
 }
 
 .sb-title {
