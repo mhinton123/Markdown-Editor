@@ -1,2 +1,15 @@
--- create the text area for the markdown input
--- style sidebar
+
+
+
+-- add light theme and get theme switch working
+
+-- put a character limit on the text area
+
+-- add cursor for all buttons
+
+-- add hover state for small icons
+
+
+
+
+-- get menu btn working and to change to an X, then close when the X is clicked
