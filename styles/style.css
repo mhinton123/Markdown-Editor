@@ -155,6 +155,8 @@ h1 {
 
 #main-wr {
   display: flex;
+  max-width: 100vw;
+  height: auto;
 }
 
 .markdown-col, .preview-col {
