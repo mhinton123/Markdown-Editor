@@ -9,7 +9,7 @@ let previewHtml = ``
 markdownInputEl.addEventListener("input", function(e){
     
     previewHtml = ``
-    
+
     const markdownText = e.target.value
     parseMarkdownText(markdownText)
     
@@ -37,7 +37,7 @@ function parseMarkdownText(markdownText) {
             formatLineToHtml("h1", line)
         } 
         else if (line.startsWith("## ")){
-            console.log("The string starts with '## '.");
+            formatLineToHtml("h2", line)
         }
         else if (line.startsWith("### ")){
             console.log("The string starts with '### '.");
@@ -96,6 +96,9 @@ function formatLineToHtml(element, innerText) {
 
     if ( element === "h1" ) {
         previewHtml += `<h1 class="p-h1">${innerText}</h1>`
+    }
+    if ( element === "h2" ) {
+        previewHtml += `<h2 class="p-h2">${innerText}</h2>`
     }
 
 }
