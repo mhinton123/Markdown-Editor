@@ -11,15 +11,9 @@
 
 -- find out all markdown rules
 
--- Get intereter working!!
 
-    -- get input from text area
-    -- loop through each line and store each line in an array
 
-    -- loop through array and check the following
 
-        -- starts with '#' -> h1  do this for all 6 Headings
-        -- starts with a number followed by a '.' -> ol
-        -- starts with '-' -> ul
-        -- starts with '>' -> blockquote (look into inline links for this)
-        -- starts with '```' -> all subsequent lines are 'code' while start != '```'
+-- handle the inline block quote links
+-- render code Blocks
+-- render body text

@@ -94,11 +94,11 @@ function parseMarkdownText(markdownText) {
         }
         // Check for <br>
         else if (line === ''){
-            console.log("<br>")
+            previewHtml += `<br>`
         }
         // Anything else is body text
         else{
-            console.log("this is body text")
+            previewHtml += `<p class="p-para">${line}</p>`
         }
 
     })
