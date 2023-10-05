@@ -13,7 +13,6 @@ markdownInputEl.addEventListener("input", function(e){
     const markdownText = e.target.value
     parseMarkdownText(markdownText)
     
-    console.log(previewHtml)
     render()
 
 })
@@ -30,37 +29,49 @@ function parseMarkdownText(markdownText) {
     const textTolineArr = markdownText.split('\n')
     let isCode = false
     
-    textTolineArr.forEach(line => {
+    textTolineArr.forEach((line, index) => {
              
         // Check for headings
         if (line.startsWith("# ")) {
-            formatLineToHtml("h1", line)
+            line = line.substring(2)
+            previewHtml += `<h1 class="p-h1">${line}</h1>`
         } 
         else if (line.startsWith("## ")){
-            formatLineToHtml("h2", line)
+            line = line.substring(3)
+            previewHtml += `<h2 class="p-h2">${line}</h2>`
         }
         else if (line.startsWith("### ")){
-            console.log("The string starts with '### '.");
+            line = line.substring(4)
+            previewHtml += `<h3 class="p-h3">${line}</h3>`
         }
         else if (line.startsWith("#### ")){
-            console.log("The string starts with '#### '.");
+            line = line.substring(5)
+            previewHtml += `<h4 class="p-h4">${line}</h4>`
         }
         else if (line.startsWith("##### ")){
-            console.log("The string starts with '##### '.");
+            line = line.substring(6)
+            previewHtml += `<h5 class="p-h5">${line}</h5>`
         }
         else if (line.startsWith("###### ")){
-            console.log("The string starts with '###### '.");
+            line = line.substring(7)
+            previewHtml += `<h6 class="p-h6">${line}</h6>`
         }
         // Check for ordered lists
         else if (typeof parseInt(line[0]) === 'number' & line[1] === '.'){
-            console.log("The string is a ol with 1 digit.")
+            line = line.substring(3)
+            previewHtml += formatOrderedListItems(line, index, textTolineArr)
+
         }
         else if (typeof parseInt(line[0]) === 'number' && typeof parseInt(line[0]) === 'number'&& line[2] === '.') {
-            console.log("The string is a ol with 2 digits.")
+            line = line.substring(4)
+            previewHtml += formatOrderedListItems(line, index, textTolineArr)
+  
         }
         // Check for unordered lists
         else if (line.startsWith("- ")){
-            console.log("The string starts with '- '.");
+            line = line.substring(2)
+            previewHtml += `<li class="p-li">${line}</li>"`
+            
         }
         // Check for blockquote    TODO (look into inline links for this)
         else if (line.startsWith("> ")){
@@ -92,16 +103,34 @@ function parseMarkdownText(markdownText) {
     })
 }
 
-function formatLineToHtml(element, innerText) {
 
-    if ( element === "h1" ) {
-        previewHtml += `<h1 class="p-h1">${innerText}</h1>`
+function formatOrderedListItems(innerText, index, textTolineArr) {
+    
+    const previousLine = textTolineArr[index-1]
+    const nextLine = textTolineArr[index+1]
+    let listItem = `<li>${innerText}</li>`
+
+    // if prev line is undifined or !li  ->  add <ol class="p-ol"> to list items
+    if (previousLine != undefined){
+        if ((!(typeof parseInt(previousLine[0]) === 'number' && previousLine[1] === '.')) && (!(typeof parseInt(previousLine[0]) === 'number' && previousLine[2] === '.')))
+            listItem = `<ol class="p-ol">` + listItem
     }
-    if ( element === "h2" ) {
-        previewHtml += `<h2 class="p-h2">${innerText}</h2>`
+    else {
+        listItem = `<ol class="p-ol">` + listItem
     }
 
+    // if next line is undefined or !li -> add </ol> to end of list item
+    if (nextLine != undefined){
+        if ((!(typeof parseInt(nextLine[0]) === 'number' && nextLine[1] === '.')) && (!(typeof parseInt(nextLine[0]) === 'number' && nextLine[2] === '.')))
+            listItem = listItem + `</ol>`
+    }
+    else {
+        listItem = listItem + `</ol>` 
+    }
+
+    return listItem
 }
+
 
 function handleMenuBtn() {
 

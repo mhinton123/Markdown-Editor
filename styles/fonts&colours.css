@@ -133,8 +133,10 @@
     color: var(--orange);
 }
 
+
+
 li, .p-ol li {
-    padding-left: 20px;
+    padding-left: 10px;
     margin-left: 10px;
     vertical-align: center;
 }

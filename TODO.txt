@@ -9,7 +9,7 @@
 
 -- add hover state for small icons
 
-
+-- find out all markdown rules
 
 -- Get intereter working!!
 
