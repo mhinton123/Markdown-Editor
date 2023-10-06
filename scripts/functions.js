@@ -82,6 +82,7 @@ export function parseMarkdownText(markdownText) {
 
         // Anything else is body text
         else{
+            line = checkForInlineCode(line)
             html += `<p class="p-para">${line}</p>`
         }
 
@@ -165,4 +166,28 @@ function formatBlockQuote(line) {
     }
 
     return `<p class="p-blockquote">${line}</p>`
+}
+
+function checkForInlineCode(line) {
+
+    var codeSnippet = line.match(/`([^`]+)`/g);
+    
+    // Format inline code
+    if (codeSnippet) {
+        
+        const minusArr = codeSnippet[0]
+        const minusQuotes = codeSnippet.map(line => line.slice(1, -1));
+        const minusQuotesAndArr = minusQuotes[0]
+        const encodedText = minusQuotesAndArr.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+        line = line.replace(minusArr, `<span class="markdown-code p-inline-code">${encodedText}</span>`)
+        
+        console.log(codeSnippet)
+        console.log(minusArr)
+        console.log(minusQuotes)
+        console.log(minusQuotesAndArr)
+        console.log(encodedText)
+
+    }
+    return line
 }

@@ -149,6 +149,10 @@ li, .p-ol li {
     color: var(orange);
 }
 
+.p-inline-code {
+    color: white;
+}
+
 /* Colours */
 :root {
     --grey-200: #F5F5F5;
