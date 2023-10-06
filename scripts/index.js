@@ -7,7 +7,7 @@ const previewDivEl = document.getElementById("preview-content")
 
 let previewHtml = ``
 
-// Markdown input
+// Runs everytime the user edits the input area
 markdownInputEl.addEventListener("input", function(e){
     
     previewHtml = ``
@@ -19,70 +19,12 @@ markdownInputEl.addEventListener("input", function(e){
 
 })
 
-// Btn click
+// Handles any buttons clicked on the page
 document.addEventListener("click", function(e) {
     if ( e.target === menuIconEl ) {
         handleMenuBtn()
     }
 })
-
-
-
-
-function formatListItems(innerText, index, textTolineArr, listType) {
-    
-    const previousLine = textTolineArr[index-1]
-    const nextLine = textTolineArr[index+1]
-    let listItem = `<li>${innerText}</li>`
-
-    if ( listType === "ol" ){
-        // if prev line is undefined or !li  ->  add <ol class="p-ol"> to list item
-        if (previousLine != undefined){
-            if ((!(typeof parseInt(previousLine[0]) === 'number' && previousLine[1] === '.')) && (!(typeof parseInt(previousLine[0]) === 'number' && previousLine[2] === '.')))
-                listItem = `<ol class="p-ol">` + listItem
-        }
-        else {
-            listItem = `<ol class="p-ol">` + listItem
-        }
-
-        // if next line is undefined or !li -> add </ol> to end of list item
-        if (nextLine != undefined){
-            if ((!(typeof parseInt(nextLine[0]) === 'number' && nextLine[1] === '.')) && (!(typeof parseInt(nextLine[0]) === 'number' && nextLine[2] === '.')))
-                listItem = listItem + `</ol>`
-        }
-        else {
-            listItem = listItem + `</ol>` 
-        }
-
-        return listItem
-    }
-    
-
-    if ( listType === "ul" ){
-        // if prev line is undefined or !li  ->  add <ul class="p-ul"> to list item
-        if (previousLine != undefined){
-            if ((!previousLine.startsWith("- ")))
-            listItem = `<ul class="p-ul">` + listItem
-        }
-        else {
-            listItem = `<ul class="p-ul">` + listItem
-        }
-
-        // if next line is undefined or !li  ->  add </ul> to end of list item
-        if (nextLine != undefined){
-            if ((!nextLine.startsWith("- ")))
-            listItem = listItem + `</ul>`
-        }
-        else {
-            listItem = listItem + `</ul>` 
-        }
-
-        return listItem
-
-    }
-
-}
-
 
 function handleMenuBtn() {
 

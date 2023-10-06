@@ -141,6 +141,14 @@ li, .p-ol li {
     vertical-align: center;
 }
 
+.p-link, .p-link:visited {
+    color: white;
+}
+
+.p-link:hover {
+    color: var(orange);
+}
+
 /* Colours */
 :root {
     --grey-200: #F5F5F5;

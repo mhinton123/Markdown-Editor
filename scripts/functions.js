@@ -55,7 +55,7 @@ export function parseMarkdownText(markdownText) {
         // Check for blockquote    TODO (look into inline links for this)
         else if (line.startsWith("> ")){
             line = line.substring(2)
-            html += `<p class="p-blockquote">${line}</p>`
+            html += formatBlockQuote(line)
         }
 
         // Check for start of a code block
@@ -79,7 +79,7 @@ export function parseMarkdownText(markdownText) {
         else if (line === ''){
             html += `<br>`
         }
-        
+
         // Anything else is body text
         else{
             html += `<p class="p-para">${line}</p>`
@@ -91,7 +91,7 @@ export function parseMarkdownText(markdownText) {
 }
 
 // Nests list items in ol / ul tags based on its postion in htmlS
-export function formatListItems(innerText, index, textTolineArr, listType) {
+function formatListItems(innerText, index, textTolineArr, listType) {
     
     const previousLine = textTolineArr[index-1]
     const nextLine = textTolineArr[index+1]
@@ -143,4 +143,26 @@ export function formatListItems(innerText, index, textTolineArr, listType) {
 
     }
 
+}
+
+// add the link in <a> tags with href
+function formatBlockQuote(line) {
+
+    let blockquoteName = line.match(/\[(.*?)\]/g)
+    let blockquoteLink = line.match(/\((.*?)\)/g); 
+
+    if (blockquoteName && blockquoteLink) {
+        
+        // Format name
+        let extractedNameText = blockquoteName.map(name => name.slice(1, -1));
+        line = line.replace(blockquoteName[0], `<a class="p-link" href="~%#LINK HERE#%~">${extractedNameText}</a>`)
+        
+        // Format link
+        let extractedLinkText = blockquoteLink.map(link => link.slice(1, -1));
+        line = line.replace("~%#LINK HERE#%~", extractedLinkText)
+        line = line.replace(blockquoteLink[0], '')
+        
+    }
+
+    return `<p class="p-blockquote">${line}</p>`
 }
