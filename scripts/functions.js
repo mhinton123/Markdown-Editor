@@ -1,4 +1,8 @@
 // Formats each line of input based on markdown syntax
+function stripHtmlBrackets(text) {
+    return text.replace(/</g, '&lt;').replace(/>/g, '&gt;')
+}
+
 export function parseMarkdownText(markdownText) {
     
     const textTolineArr = markdownText.split('\n')
@@ -10,37 +14,45 @@ export function parseMarkdownText(markdownText) {
         // Check for headings
         if (line.startsWith("# ")) {
             line = line.substring(2)
+            line = stripHtmlBrackets(line)
             html += `<h1 class="p-h1">${line}</h1>`
         } 
         else if (line.startsWith("## ")){
             line = line.substring(3)
+            line = stripHtmlBrackets(line)
             html += `<h2 class="p-h2">${line}</h2>`
         }
         else if (line.startsWith("### ")){
             line = line.substring(4)
+            line = stripHtmlBrackets(line)
             html += `<h3 class="p-h3">${line}</h3>`
         }
         else if (line.startsWith("#### ")){
             line = line.substring(5)
+            line = stripHtmlBrackets(line)
             html += `<h4 class="p-h4">${line}</h4>`
         }
         else if (line.startsWith("##### ")){
             line = line.substring(6)
+            line = stripHtmlBrackets(line)
             html += `<h5 class="p-h5">${line}</h5>`
         }
         else if (line.startsWith("###### ")){
             line = line.substring(7)
+            line = stripHtmlBrackets(line)
             html += `<h6 class="p-h6">${line}</h6>`
         }
 
         // Check for ordered lists
         else if (typeof parseInt(line[0]) === 'number' & line[1] === '.'){
             line = line.substring(3)
+            line = stripHtmlBrackets(line)
             html += formatListItems(line, index, textTolineArr, "ol")
 
         }
         else if (typeof parseInt(line[0]) === 'number' && typeof parseInt(line[0]) === 'number'&& line[2] === '.') {
             line = line.substring(4)
+            line = stripHtmlBrackets(line)
             html += formatListItems(line, index, textTolineArr, "ol")
   
         }
@@ -48,6 +60,7 @@ export function parseMarkdownText(markdownText) {
         // Check for unordered lists
         else if (line.startsWith("- ")){
             line = line.substring(2)
+            line = stripHtmlBrackets(line)
             html += formatListItems(line, index, textTolineArr, "ul")
             
         }
@@ -82,6 +95,7 @@ export function parseMarkdownText(markdownText) {
 
         // Anything else is body text
         else{
+            line = stripHtmlBrackets(line)
             line = checkForInlineCode(line)
             html += `<p class="p-para">${line}</p>`
         }
@@ -165,6 +179,7 @@ function formatBlockQuote(line) {
         
     }
 
+    line = stripHtmlBrackets(line)
     return `<p class="p-blockquote">${line}</p>`
 }
 
@@ -199,3 +214,4 @@ function checkForInlineCode(line) {
     }
     return line
 }
+
