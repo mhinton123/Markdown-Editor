@@ -1,8 +1,8 @@
-// Formats each line of input based on markdown syntax
 function stripHtmlBrackets(text) {
     return text.replace(/</g, '&lt;').replace(/>/g, '&gt;')
 }
 
+// Formats each line of input based on markdown syntax
 export function parseMarkdownText(markdownText) {
     
     const textTolineArr = markdownText.split('\n')
@@ -47,12 +47,14 @@ export function parseMarkdownText(markdownText) {
         else if (typeof parseInt(line[0]) === 'number' & line[1] === '.'){
             line = line.substring(3)
             line = stripHtmlBrackets(line)
+            line = checkForInlineCode(line)
             html += formatListItems(line, index, textTolineArr, "ol")
 
         }
         else if (typeof parseInt(line[0]) === 'number' && typeof parseInt(line[0]) === 'number'&& line[2] === '.') {
             line = line.substring(4)
             line = stripHtmlBrackets(line)
+            line = checkForInlineCode(line)
             html += formatListItems(line, index, textTolineArr, "ol")
   
         }
@@ -61,6 +63,7 @@ export function parseMarkdownText(markdownText) {
         else if (line.startsWith("- ")){
             line = line.substring(2)
             line = stripHtmlBrackets(line)
+            line = checkForInlineCode(line)
             html += formatListItems(line, index, textTolineArr, "ul")
             
         }
@@ -165,12 +168,13 @@ function formatBlockQuote(line) {
 
     let blockquoteName = line.match(/\[(.*?)\]/g)
     let blockquoteLink = line.match(/\((.*?)\)/g); 
+    line = stripHtmlBrackets(line)
 
     if (blockquoteName && blockquoteLink) {
         
         // Format name
         let extractedNameText = blockquoteName.map(name => name.slice(1, -1));
-        line = line.replace(blockquoteName[0], `<a class="p-link" href="~%#LINK HERE#%~">${extractedNameText}</a>`)
+        line = line.replace(blockquoteName[0], `<a class="p-link" href="~%#LINK HERE#%~" target="_blank">${extractedNameText}</a>`)
         
         // Format link
         let extractedLinkText = blockquoteLink.map(link => link.slice(1, -1));
@@ -179,15 +183,14 @@ function formatBlockQuote(line) {
         
     }
 
-    line = stripHtmlBrackets(line)
     return `<p class="p-blockquote">${line}</p>`
 }
 
 // adds <p> tags and replaces all <> with html entities
 function formatCodeblocksLine(line) {
     
-    const replacedEntities = line.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-    return `<p class="p-code markdown-code">${replacedEntities}</p>`
+    line = stripHtmlBrackets(line)
+    return `<p class="p-code markdown-code">${line}</p>`
     
 }
 
