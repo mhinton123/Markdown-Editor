@@ -11,9 +11,10 @@
 
 -- find out all markdown rules
 
+-- fix when html is typed into input
 
--- format inline blockquote links
 
--- handle the inline block quote links
+
+
 -- render code Blocks
 -- render body text

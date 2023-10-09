@@ -60,19 +60,19 @@ export function parseMarkdownText(markdownText) {
 
         // Check for start of a code block
         else if (line.startsWith("```") && isCode === false){
-            console.log("The string starts with '```'.");
+            html += `<div class="p-codeblock"><pre>`
             isCode = true
         }
 
         // Check for end of a code block
         else if (line.startsWith("```") && isCode === true){
-            console.log("The string starts with '```'.");
+            html += `</div></pre>`
             isCode = false
         }
 
         // Check for line of code
         else if (isCode === true){
-            console.log(line + " is a line of code")
+            html += formatCodeblocksLine(line)
         }
 
         // Check for <br>
@@ -168,17 +168,25 @@ function formatBlockQuote(line) {
     return `<p class="p-blockquote">${line}</p>`
 }
 
+// adds <p> tags and replaces all <> with html entities
+function formatCodeblocksLine(line) {
+    
+    const replacedEntities = line.replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    return `<p class="p-code markdown-code">${replacedEntities}</p>`
+    
+}
+
 function checkForInlineCode(line) {
 
-    var codeSnippet = line.match(/`([^`]+)`/g);
+    var codeSnippet = line.match(/`([^`]+)`/g)
     
     // Format inline code
     if (codeSnippet) {
         
         const minusArr = codeSnippet[0]
-        const minusQuotes = codeSnippet.map(line => line.slice(1, -1));
+        const minusQuotes = codeSnippet.map(line => line.slice(1, -1))
         const minusQuotesAndArr = minusQuotes[0]
-        const encodedText = minusQuotesAndArr.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        const encodedText = minusQuotesAndArr.replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
         line = line.replace(minusArr, `<span class="markdown-code p-inline-code">${encodedText}</span>`)
         

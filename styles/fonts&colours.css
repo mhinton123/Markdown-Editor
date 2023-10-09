@@ -153,6 +153,17 @@ li, .p-ol li {
     color: white;
 }
 
+.p-codeblock {
+    background-color: var(--grey-800);
+    padding: 20px;
+    border-radius: 4px;
+}
+
+.p-code {
+    text-wrap:wrap;
+    word-wrap: break-word;
+}
+
 /* Colours */
 :root {
     --grey-200: #F5F5F5;
