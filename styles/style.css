@@ -165,10 +165,10 @@ h1 {
 }
 
 .markdown-col, .preview-col {
-  max-width: 49.54vw;
+  max-width: 49.64vw;
   display: flex;
   flex-direction: column;
-  min-width: 49.54vw;
+  min-width: 49.64vw;
 }
 
 .markdown-col {
@@ -234,7 +234,22 @@ h1 {
 
 
 
+/* For Webkit browsers (e.g., Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+}
 
+::-webkit-scrollbar-track {
+  background: var(--grey-700) /* Color of the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--orange); /* Color of the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--orange-hover) /* Color of the thumb on hover */
+}
 
 
 

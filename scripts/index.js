@@ -15,7 +15,7 @@ markdownInputEl.addEventListener("input", function(e){
     const markdownText = e.target.value
     previewHtml += parseMarkdownText(markdownText)
     
-    render()
+    renderMarkdownContent()
 
 })
 
@@ -50,8 +50,6 @@ function handleMenuBtn() {
 
 }
 
-function render() {
+function renderMarkdownContent() {
     previewDivEl.innerHTML = previewHtml
 }
-
-render()
