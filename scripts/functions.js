@@ -274,6 +274,7 @@ This markdown editor allows for inline-code snippets, like this: \`<p>I'm inline
     }
 }
 
+// Runs at startup to render the users last edited file from Local Storage
 export function renderLastEditedFile(filesArr) {
 
     const lastEditedFile = getLastEditedFile(filesArr)
@@ -286,17 +287,14 @@ export function renderLastEditedFile(filesArr) {
 
 }
 
+// Reders all files from Local Storage to #sb-doclist-wr
 export function renderFilesInfoToSidebar(filesArr) {
 
     const sidebarDivEl = document.getElementById("sb-doclist-wr")
     let filesHtml = ''
-
-    console.log(filesArr[0].name)
     
     // loop through arr
     filesArr.forEach(file => {
-
-        console.log( typeof file.createdAt )
         
         filesHtml += `
 <div class="sb-doc-wr">
@@ -312,6 +310,7 @@ export function renderFilesInfoToSidebar(filesArr) {
         
 }
 
+// Gets last edited file from Local Storage
 function getLastEditedFile(filesArr) {
     
     let lastEditedFile = filesArr[0]
@@ -335,6 +334,7 @@ function getLastEditedFile(filesArr) {
     return lastEditedFile
 }
 
+// Parses through #markdown-input and formats the markdown text to #preview-content
 export function renderMarkdownContent(content) {
 
     const previewContentEl = document.getElementById("preview-content") 
@@ -345,6 +345,7 @@ export function renderMarkdownContent(content) {
     previewContentEl.innerHTML = content
 }
 
+// Renders file.name to #file-name
 function renderFileName(name) {
     
     const fileNameEl = document.getElementById("file-name")
@@ -353,6 +354,7 @@ function renderFileName(name) {
 
 }
 
+// Opens and closes sidebar
 export function handleMenuBtn() {
 
     // Check open/close state
@@ -377,19 +379,18 @@ export function handleMenuBtn() {
 
 }
 
+// Updates file in Local storage
 export function handlesaveChangesBtn(){
-
-    updateFile()
-}
-
-function updateFile() {
 
     const currentFileName = document.getElementById("file-name").dataset.name
     const updatedFileContent = document.getElementById("markdown-input").value
     const updatedFileName = document.getElementById("file-name").value
     
+
+    // Pull Local Storage
     let markdownFilesData = getFilesFromLocalStorage()
     
+    // Update File Data
     markdownFilesData.forEach(file => {
         if (file.name === currentFileName) {
             
@@ -401,8 +402,14 @@ function updateFile() {
         }
     })
 
+
+    renderFilesInfoToSidebar(markdownFilesData)
+
+    // Push updated data to Local Storage
     const updatedDataString = JSON.stringify(markdownFilesData)
     localStorage.setItem('markdownFiles', updatedDataString)
-    renderFilesInfoToSidebar(markdownFilesData)
-    
+
+    // Update #file-name data attribute
+    document.getElementById("file-name").dataset.name = updatedFileName
 }
+
