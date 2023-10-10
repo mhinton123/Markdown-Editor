@@ -234,34 +234,28 @@ h1 {
 
 
 
-/* For Webkit browsers (e.g., Chrome, Safari) */
+
+
+
+
+/*######################## MISC ############################*/
+
+/* Scroll Bar */
 ::-webkit-scrollbar {
-  width: 12px; /* Width of the scrollbar */
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--grey-700) /* Color of the track */
+  background: var(--grey-700);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--orange); /* Color of the thumb */
+  background: var(--orange);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--orange-hover) /* Color of the thumb on hover */
+  background: var(--orange-hover);
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* The switch container */

@@ -1,4 +1,4 @@
-import {parseMarkdownText} from '/scripts/functions.js'
+import {parseMarkdownText, getFilesFromLocalStorage, renderLastEditedFile, renderMarkdownContent} from '/scripts/functions.js'
 
 const menuIconEl = document.getElementById("hdr-menu-icon")
 const sidebarDivEl = document.getElementById("sb-wr")
@@ -7,15 +7,15 @@ const previewDivEl = document.getElementById("preview-content")
 
 let previewHtml = ``
 
+// On startup
+let markdownFilesData = getFilesFromLocalStorage()
+renderLastEditedFile(markdownFilesData)
+
 // Runs everytime the user edits the input area
 markdownInputEl.addEventListener("input", function(e){
     
-    previewHtml = ``
-
-    const markdownText = e.target.value
-    previewHtml += parseMarkdownText(markdownText)
-    
-    renderMarkdownContent()
+    previewHtml =''
+    renderMarkdownContent(previewHtml)
 
 })
 
@@ -50,6 +50,4 @@ function handleMenuBtn() {
 
 }
 
-function renderMarkdownContent() {
-    previewDivEl.innerHTML = previewHtml
-}
+
