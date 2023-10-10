@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'https://jspm.dev/uuid'
+
 const menuIconEl = document.getElementById("hdr-menu-icon")
 const sidebarDivEl = document.getElementById("sb-wr")
 
@@ -295,16 +297,20 @@ export function renderFilesInfoToSidebar(filesArr) {
     
     // loop through arr
     filesArr.forEach(file => {
-        
+        const id = uuidv4()
         filesHtml += `
-<div class="sb-doc-wr">
-<img src="/assets/icon-document.svg" alt="document-icon" class="document-icon">
+<div class="sb-doc-wr" id="${id}">
+<img src="/assets/icon-document.svg" alt="document-icon" class="sb-doc-document-icon">
 <div class="sb-doc-details-wr">
     <p class="sb-doc-date body-m">${file.createdAt.substring(0, 10)}</p>
     <p class="sb-doc-name heading-m">${file.name}</p>
 </div>
 </div>`
     })
+
+    console.log(filesHtml)
+
+    
 
     sidebarDivEl.innerHTML = filesHtml
         
@@ -440,5 +446,36 @@ export function handleNewDocBtn() {
     localStorage.setItem('markdownFiles', updatedDataString)
     
     
+}
+
+// Renders target file from Local Storage
+export function handleChangeFile(targetFileBtn) {
+
+    // Get target file name
+    const targetFileName = targetFileBtn.querySelector(".sb-doc-name").innerText
+
+    // Pull Local Storage
+    let markdownFilesData = getFilesFromLocalStorage()
+    
+    // Get target file
+    const targetFileObj = markdownFilesData.filter(file => file.name === targetFileName)
+
+    renderFile(targetFileObj)
+}
+
+// Renders a file obj passed in from Local Storage
+function renderFile(fileObj) {
+
+    fileObj = fileObj[0]
+
+    // Update file name
+    const fileNameEl = document.getElementById("file-name")
+    fileNameEl.value = fileObj.name
+    fileNameEl.dataset.name = fileObj.name
+
+    // Render #markdown-input
+    document.getElementById("markdown-input").value = fileObj.content
+
+    renderMarkdownContent(fileObj.content)
 }
 

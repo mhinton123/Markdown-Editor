@@ -1,4 +1,4 @@
-import {getFilesFromLocalStorage, renderLastEditedFile, renderMarkdownContent, renderFilesInfoToSidebar, handleMenuBtn, handleSaveChangesBtn, handleNewDocBtn} from '/scripts/functions.js'
+import {getFilesFromLocalStorage, renderLastEditedFile, renderMarkdownContent, renderFilesInfoToSidebar, handleMenuBtn, handleSaveChangesBtn, handleNewDocBtn, handleChangeFile} from '/scripts/functions.js'
 
 const markdownInputEl = document.getElementById("markdown-input")
 
@@ -24,10 +24,14 @@ document.addEventListener("click", function(e) {
     if ( e.target.id === "hdr-menu-icon" ) {
         handleMenuBtn()
     }
-    if ( e.target.id === "save-doc-btn" ) {
+    else if ( e.target.id === "save-doc-btn" ) {
         handleSaveChangesBtn()
     }
-    if ( e.target.id === "newdoc-btn" ) {
+    else if ( e.target.id === "newdoc-btn" ) {
         handleNewDocBtn()
+    }
+    else if ( e.target && e.target.classList[0].includes('sb-doc') ) {
+        const targetFileBtn = e.target.closest('.sb-doc-wr')
+        handleChangeFile(targetFileBtn)
     }
 })

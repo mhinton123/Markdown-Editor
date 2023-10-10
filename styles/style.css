@@ -57,6 +57,10 @@ ul {
   gap: 11px;
 }
 
+.sb-doc-wr:hover {
+  border-bottom: 1px solid #979797;
+}
+
 .sb-doc-details-wr {
   display: flex;
   flex-direction: column;
