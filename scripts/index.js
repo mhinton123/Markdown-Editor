@@ -1,15 +1,14 @@
-import {parseMarkdownText, getFilesFromLocalStorage, renderLastEditedFile, renderMarkdownContent} from '/scripts/functions.js'
+import {getFilesFromLocalStorage, renderLastEditedFile, renderMarkdownContent, renderFilesInfoToSidebar, handleMenuBtn, handlesaveChangesBtn} from '/scripts/functions.js'
 
-const menuIconEl = document.getElementById("hdr-menu-icon")
-const sidebarDivEl = document.getElementById("sb-wr")
 const markdownInputEl = document.getElementById("markdown-input")
-const previewDivEl = document.getElementById("preview-content")
+
 
 let previewHtml = ``
 
 // On startup
 let markdownFilesData = getFilesFromLocalStorage()
 renderLastEditedFile(markdownFilesData)
+renderFilesInfoToSidebar(markdownFilesData)
 
 // Runs everytime the user edits the input area
 markdownInputEl.addEventListener("input", function(e){
@@ -21,33 +20,14 @@ markdownInputEl.addEventListener("input", function(e){
 
 // Handles any buttons clicked on the page
 document.addEventListener("click", function(e) {
+
+    const saveChangesBtn = document.getElementById("save-doc-btn")
+    const menuIconEl = document.getElementById("hdr-menu-icon")
+
     if ( e.target === menuIconEl ) {
         handleMenuBtn()
     }
+    if ( e.target === saveChangesBtn ) {
+        handlesaveChangesBtn()
+    }
 })
-
-function handleMenuBtn() {
-
-    // Check open/close state
-    if ( menuIconEl.src.includes("/assets/icon-menu.svg") ) {
-        
-        // Show sidebar
-        sidebarDivEl.style.display = "flex"
-
-        // Change hamburger icon to 'X'
-        menuIconEl.src = "/assets/icon-close.svg"
-    
-    }
-    else {
-
-        // Close sidebar
-        sidebarDivEl.style.display = "none"
-
-        // Change hamburger icon to 'X'
-        menuIconEl.src = "/assets/icon-menu.svg"
-    
-    }
-
-}
-
-

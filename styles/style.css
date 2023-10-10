@@ -151,6 +151,18 @@ h1 {
   padding: 11px 15px;
 }
 
+.hdr-doc-name {
+  background-color: var(--grey-800);
+  border: none;
+}
+
+.hdr-doc-name:focus {
+  outline: none;
+  border-bottom: 1px solid #979797;
+}
+
+
+
 /* Main */
 
 #main-wr {

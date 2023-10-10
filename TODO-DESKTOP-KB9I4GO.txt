@@ -1,0 +1,20 @@
+
+
+
+-- add light theme and get theme switch working
+
+-- put a character limit on the text area
+
+-- add cursor for all buttons
+
+-- add hover state for small icons
+
+-- find out all markdown rules
+
+-- fix when html is typed into input
+
+
+
+
+-- render code Blocks
+-- render body text

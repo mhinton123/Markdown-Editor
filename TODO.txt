@@ -15,6 +15,22 @@
 
 
 
+-- whenever the user clicks the save button
 
--- render code Blocks
--- render body text
+    -- saveChanges()
+
+        -- updateFileContent()
+            -- get text inside markdown input field
+            -- get value from header name field
+            -- find file via name in file arr
+            -- ammend content to LS
+            -- get current date and ammend created at
+
+
+        -- updateFileName()
+            -- get value from input field
+            -- find the file via name in files arr
+            -- ammend new name to LS 
+
+    -- render files from Local Storage
+        

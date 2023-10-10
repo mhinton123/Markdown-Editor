@@ -29,24 +29,8 @@
             <div class="sb-newdoc-btn-wr">
               <button id="newdoc-btn" class="heading-m primary-btn">+New Document</button>
             </div>
-            <div class="sb-doclist-wr">
-      
-              <div class="sb-doc-wr">
-                <img src="/assets/icon-document.svg" alt="document-icon" class="document-icon">
-                <div class="sb-doc-details-wr">
-                  <p class="sb-doc-date body-m">01 April 2022</p>
-                  <p class="sb-doc-name heading-m">untitled-document.md</p>
-                </div>
-              </div>
-      
-              <div class="sb-doc-wr">
-                <img src="/assets/icon-document.svg" alt="document-icon" class="document-icon">
-                <div class="sb-doc-details-wr">
-                  <p class="sb-doc-date body-m">01 April 2022</p>
-                  <p class="sb-doc-name heading-m">welcome.md</p>
-                </div>
-              </div>
-      
+            <div class="sb-doclist-wr" id="sb-doclist-wr">
+              <!-- Sidebar files here -->
             </div>
             <div class="sb-theme-wr">
               <img src="/assets/icon-dark-mode.svg" alt="dark-mode-icon" class="theme-icon">
@@ -77,14 +61,14 @@
               <img src="/assets/icon-document.svg" alt="document-icon" class="hdr-doc-icon">
               <div class="hdr-doc-details-wr">
                 <p class="hdr-doc-title body-m">Document Name</p>
-                <p class="hdr-doc-name heading-m">welcome.md</p>
+                <input type="text" class="hdr-doc-name heading-m" id="file-name"></input>
               </div>
             </div>
             <div class="hdr-doc-btns-wr">
               <img src="/assets/icon-delete.svg" alt="delete-icon" class="hdr-del-icon">
-              <button id="save-doc-btn" class="primary-btn">
+              <button id="save-doc-btn" class="primary-btn heading-m">
                 <img src="/assets/icon-save.svg" alt="save-icon" class="save-doc-icon">
-                <p class="heading-m">Save Changes</p>
+                Save Changes
               </button>
             </div>
           </div>

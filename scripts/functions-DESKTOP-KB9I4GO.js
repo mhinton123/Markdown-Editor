@@ -1,6 +1,3 @@
-const menuIconEl = document.getElementById("hdr-menu-icon")
-const sidebarDivEl = document.getElementById("sb-wr")
-
 function stripHtmlBrackets(text) {
     return text.replace(/</g, '&lt;').replace(/>/g, '&gt;')
 }
@@ -261,9 +258,12 @@ This markdown editor allows for inline-code snippets, like this: \`<p>I'm inline
 </main>
 \`\`\``
 
+
+
+        let date = new Date()
         const welcomeFile = [
             {
-                "createdAt": new Date(),
+                "createdAt": date,
                 "name": "welcome.md",
                 "content": welcomeContent
               }
@@ -282,34 +282,7 @@ export function renderLastEditedFile(filesArr) {
     markdownInputEl.value = lastEditedFile.content
 
     renderMarkdownContent(lastEditedFile.content)
-    renderFileName(lastEditedFile.name)
 
-}
-
-export function renderFilesInfoToSidebar(filesArr) {
-
-    const sidebarDivEl = document.getElementById("sb-doclist-wr")
-    let filesHtml = ''
-
-    console.log(filesArr[0].name)
-    
-    // loop through arr
-    filesArr.forEach(file => {
-
-        console.log( typeof file.createdAt )
-        
-        filesHtml += `
-<div class="sb-doc-wr">
-<img src="/assets/icon-document.svg" alt="document-icon" class="document-icon">
-<div class="sb-doc-details-wr">
-    <p class="sb-doc-date body-m">${file.createdAt.substring(0, 10)}</p>
-    <p class="sb-doc-name heading-m">${file.name}</p>
-</div>
-</div>`
-    })
-
-    sidebarDivEl.innerHTML = filesHtml
-        
 }
 
 function getLastEditedFile(filesArr) {
@@ -343,66 +316,4 @@ export function renderMarkdownContent(content) {
     content = parseMarkdownText(markdownText)
     
     previewContentEl.innerHTML = content
-}
-
-function renderFileName(name) {
-    
-    const fileNameEl = document.getElementById("file-name")
-    fileNameEl.value = name
-    fileNameEl.setAttribute('data-name', name);
-
-}
-
-export function handleMenuBtn() {
-
-    // Check open/close state
-    if ( menuIconEl.src.includes("/assets/icon-menu.svg") ) {
-        
-        // Show sidebar
-        sidebarDivEl.style.display = "flex"
-
-        // Change hamburger icon to 'X'
-        menuIconEl.src = "/assets/icon-close.svg"
-    
-    }
-    else {
-
-        // Close sidebar
-        sidebarDivEl.style.display = "none"
-
-        // Change hamburger icon to 'X'
-        menuIconEl.src = "/assets/icon-menu.svg"
-    
-    }
-
-}
-
-export function handlesaveChangesBtn(){
-
-    updateFile()
-}
-
-function updateFile() {
-
-    const currentFileName = document.getElementById("file-name").dataset.name
-    const updatedFileContent = document.getElementById("markdown-input").value
-    const updatedFileName = document.getElementById("file-name").value
-    
-    let markdownFilesData = getFilesFromLocalStorage()
-    
-    markdownFilesData.forEach(file => {
-        if (file.name === currentFileName) {
-            
-            file.content = updatedFileContent
-            file.name = updatedFileName
-            file.createdAt = new Date().toISOString()
-            console.log(file.createdAt)
-
-        }
-    })
-
-    const updatedDataString = JSON.stringify(markdownFilesData)
-    localStorage.setItem('markdownFiles', updatedDataString)
-    renderFilesInfoToSidebar(markdownFilesData)
-    
 }
