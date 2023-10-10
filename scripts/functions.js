@@ -380,7 +380,7 @@ export function handleMenuBtn() {
 }
 
 // Updates file in Local storage
-export function handlesaveChangesBtn(){
+export function handleSaveChangesBtn(){
 
     const currentFileName = document.getElementById("file-name").dataset.name
     const updatedFileContent = document.getElementById("markdown-input").value
@@ -397,7 +397,6 @@ export function handlesaveChangesBtn(){
             file.content = updatedFileContent
             file.name = updatedFileName
             file.createdAt = new Date().toISOString()
-            console.log(file.createdAt)
 
         }
     })
@@ -411,5 +410,35 @@ export function handlesaveChangesBtn(){
 
     // Update #file-name data attribute
     document.getElementById("file-name").dataset.name = updatedFileName
+}
+
+// Created a new file and pushes it to local storage
+export function handleNewDocBtn() {
+    
+    // Change file name
+    const fileNameEl = document.getElementById("file-name")
+    fileNameEl.value = "new-document.md"
+    fileNameEl.dataset.name = "new-document.md"
+
+    // Clear #markdown-input & #preview-content
+    document.getElementById("markdown-input").value = ''
+    document.getElementById("preview-content").innerHTML = ''
+
+    // Push new file to Local storage
+    let markdownFilesData = getFilesFromLocalStorage()
+    markdownFilesData.push(
+        {
+            createdAt: new Date().toISOString(),
+            name: "new-document.md",
+            content: ''
+        }
+        )
+
+    renderFilesInfoToSidebar(markdownFilesData)
+    
+    const updatedDataString = JSON.stringify(markdownFilesData)
+    localStorage.setItem('markdownFiles', updatedDataString)
+    
+    
 }
 

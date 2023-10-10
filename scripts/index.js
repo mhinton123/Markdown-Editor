@@ -1,4 +1,4 @@
-import {getFilesFromLocalStorage, renderLastEditedFile, renderMarkdownContent, renderFilesInfoToSidebar, handleMenuBtn, handlesaveChangesBtn} from '/scripts/functions.js'
+import {getFilesFromLocalStorage, renderLastEditedFile, renderMarkdownContent, renderFilesInfoToSidebar, handleMenuBtn, handleSaveChangesBtn, handleNewDocBtn} from '/scripts/functions.js'
 
 const markdownInputEl = document.getElementById("markdown-input")
 
@@ -21,13 +21,13 @@ markdownInputEl.addEventListener("input", function(e){
 // Handles any buttons clicked on the page
 document.addEventListener("click", function(e) {
 
-    const saveChangesBtn = document.getElementById("save-doc-btn")
-    const menuIconEl = document.getElementById("hdr-menu-icon")
-
-    if ( e.target === menuIconEl ) {
+    if ( e.target.id === "hdr-menu-icon" ) {
         handleMenuBtn()
     }
-    if ( e.target === saveChangesBtn ) {
-        handlesaveChangesBtn()
+    if ( e.target.id === "save-doc-btn" ) {
+        handleSaveChangesBtn()
+    }
+    if ( e.target.id === "newdoc-btn" ) {
+        handleNewDocBtn()
     }
 })

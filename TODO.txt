@@ -11,26 +11,22 @@
 
 -- find out all markdown rules
 
--- fix when html is typed into input
+-- fix name input to > 0 && < 25 characters
+
+-- alert feedback when savechanges btn clicked
 
 
 
--- whenever the user clicks the save button
-
-    -- saveChanges()
-
-        -- updateFileContent()
-            -- get text inside markdown input field
-            -- get value from header name field
-            -- find file via name in file arr
-            -- ammend content to LS
-            -- get current date and ammend created at
-
-
-        -- updateFileName()
-            -- get value from input field
-            -- find the file via name in files arr
-            -- ammend new name to LS 
-
-    -- render files from Local Storage
-        
+-- whenever New document btn is clicked
+    -- #file-name.value & #file-name.dataset.name = new-document.md
+    -- #markdown-input is cleared
+    -- a new file is pushed to Local Storage
+        -- Pull Local Storage (parse)
+        -- push the following
+            {
+                name: "new-document.md",
+                createdAt: new Date().toISOString,
+                content: ''
+            }
+        -- push amended data arr to Local storage
+        -- renderFilesInfoToSidebar()
