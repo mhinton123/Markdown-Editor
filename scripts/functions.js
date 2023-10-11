@@ -470,6 +470,7 @@ export function handleDeleteFileBtn() {
 
     deleteFileModalMsg.innerText = deleteFileModalMsg.innerText.replace("%#FILE-NAME#%", currentFileName)
     modalEl.style.display = "block"
+
 }
 
 // Closes delete file modal
