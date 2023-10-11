@@ -244,6 +244,7 @@ h1 {
 /* Modal */
 
 #delete-modal-window {
+  display: none;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -251,7 +252,6 @@ h1 {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .delete-modal-content-wr {

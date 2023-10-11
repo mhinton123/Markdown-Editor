@@ -65,7 +65,7 @@
               </div>
             </div>
             <div class="hdr-doc-btns-wr">
-              <img src="/assets/icon-delete.svg" alt="delete-icon" class="hdr-del-icon">
+              <img src="/assets/icon-delete.svg" alt="delete-icon" class="hdr-del-icon" id="hdr-del-icon">
               <button id="save-doc-btn" class="primary-btn heading-m">
                 <img src="/assets/icon-save.svg" alt="save-icon" class="save-doc-icon">
                 Save Changes
@@ -110,7 +110,7 @@
       <span id="delete-modal-close-btn">&times;</span>
       <div class="delete-modal-details-wr">
         <p class="delete-modal-title">Delete this document?</p>
-        <p class="delete-modal-msg">Are you sure you want to delete '%#MSG-HERE#%' document and its contents? This action cannot be reversed.</p>
+        <p class="delete-modal-msg" id="delete-modal-msg">Are you sure you want to delete '%#FILE-NAME#%' document and its contents? This action cannot be reversed.</p>
         <button id="delete-modal-btn" class="heading-m primary-btn">Confirm & Delete</button>
       </div>
     </div>

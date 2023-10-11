@@ -308,10 +308,6 @@ export function renderFilesInfoToSidebar(filesArr) {
 </div>`
     })
 
-    console.log(filesHtml)
-
-    
-
     sidebarDivEl.innerHTML = filesHtml
         
 }
@@ -461,6 +457,26 @@ export function handleChangeFile(targetFileBtn) {
     const targetFileObj = markdownFilesData.filter(file => file.name === targetFileName)
 
     renderFile(targetFileObj)
+}
+
+// Deletes file from Local Storage
+export function handleDeleteFileBtn() {
+
+    // Update modal msg with current file name
+    const currentFileName = document.getElementById("file-name").dataset.name
+    let deleteFileModalMsg = document.getElementById("delete-modal-msg")
+    const modalEl = document.getElementById("delete-modal-window")
+
+    deleteFileModalMsg.innerText = deleteFileModalMsg.innerText.replace("%#FILE-NAME#%", currentFileName)
+    modalEl.style.display = "block"
+}
+
+// Closes delete file modal
+export function handleCloseDeleteModalBtn() {
+    
+    const modalEl = document.getElementById("delete-modal-window")
+    modalEl.style.display = "none"
+    
 }
 
 // Renders a file obj passed in from Local Storage
