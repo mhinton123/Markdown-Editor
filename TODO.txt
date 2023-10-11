@@ -15,18 +15,8 @@
 
 -- alert feedback when savechanges btn clicked
 
+-- sort document list in sidebar by date & time
 
 
--- whenever New document btn is clicked
-    -- #file-name.value & #file-name.dataset.name = new-document.md
-    -- #markdown-input is cleared
-    -- a new file is pushed to Local Storage
-        -- Pull Local Storage (parse)
-        -- push the following
-            {
-                name: "new-document.md",
-                createdAt: new Date().toISOString,
-                content: ''
-            }
-        -- push amended data arr to Local storage
-        -- renderFilesInfoToSidebar()
+
+-- add delete feature

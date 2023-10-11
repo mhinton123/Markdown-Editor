@@ -241,9 +241,72 @@ h1 {
   padding: 25px;
 }
 
+/* Modal */
 
+#delete-modal-window {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.2);
+}
 
+.delete-modal-content-wr {
+  background-color: var(--grey-900);
+  margin: 10% auto;
+  padding: 20px;
+  width: 343px;
+  border-radius: 4px;
+}
 
+.delete-modal-details-wr {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#delete-modal-close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.delete-modal-wr {
+  width: 343px;
+  background-color: var(--grey-900);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 4px;
+  margin: 10% auto;
+}
+
+.delete-modal-title {
+  font-family: 'Roboto Slab', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+}
+
+.delete-modal-msg {
+  font-family: 'Roboto Slab', serif;
+  font-size: 14px;
+  color: var(--grey-400);
+  line-height: 24px;
+}
 
 
 
