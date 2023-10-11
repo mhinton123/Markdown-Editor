@@ -17,6 +17,10 @@
 
 -- sort document list in sidebar by date & time
 
+-- add transparency to delete modal
+
+-- fix not being able to delete all files
+
 
 
 -- add delete feature

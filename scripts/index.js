@@ -1,4 +1,4 @@
-import {getFilesFromLocalStorage, renderLastEditedFile, renderMarkdownContent, renderFilesInfoToSidebar, handleMenuBtn, handleSaveChangesBtn, handleNewDocBtn, handleChangeFile, handleDeleteFileBtn, handleCloseDeleteModalBtn} from '/scripts/functions.js'
+import {getFilesFromLocalStorage, renderLastEditedFile, renderMarkdownContent, renderFilesInfoToSidebar, handleMenuBtn, handleSaveChangesBtn, handleNewDocBtn, handleChangeFile, handleDeleteFileBtn, closeModal, handleConfirmDeleteBtn} from '/scripts/functions.js'
 
 const markdownInputEl = document.getElementById("markdown-input")
 
@@ -30,11 +30,14 @@ document.addEventListener("click", function(e) {
     else if ( e.target.id === "newdoc-btn" ) {
         handleNewDocBtn()
     }
-    else if ( e.target.id === "hdr-del-icon") {
+    else if ( e.target.id === "hdr-del-icon" ) {
         handleDeleteFileBtn()
     }
-    else if ( e.target.id === "delete-modal-close-btn") {
-        handleCloseDeleteModalBtn()
+    else if ( e.target.id === "delete-modal-close-btn" ) {
+        closeModal()
+    }
+    else if ( e.target.id === "delete-modal-btn" ){
+        handleConfirmDeleteBtn()
     }
     else if ( e.target && e.target.classList[0].includes('sb-doc') ) {
         const targetFileBtn = e.target.closest('.sb-doc-wr')

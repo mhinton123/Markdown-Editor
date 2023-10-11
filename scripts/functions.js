@@ -220,7 +220,7 @@ function checkForInlineCode(line) {
 export function getFilesFromLocalStorage() {
 
     // Check Local Storage for cached files
-    if (JSON.parse(localStorage.getItem("markdownFiles"))) {
+    if (JSON.parse(localStorage.getItem("markdownFiles")) && JSON.parse(localStorage.getItem("markdownFiles")).length > 0) {
         return JSON.parse(localStorage.getItem("markdownFiles"))
         
     }
@@ -438,6 +438,7 @@ export function handleNewDocBtn() {
 
     renderFilesInfoToSidebar(markdownFilesData)
     
+    // Push to Local Storage
     const updatedDataString = JSON.stringify(markdownFilesData)
     localStorage.setItem('markdownFiles', updatedDataString)
     
@@ -459,7 +460,7 @@ export function handleChangeFile(targetFileBtn) {
     renderFile(targetFileObj)
 }
 
-// Deletes file from Local Storage
+// Opens delete modal
 export function handleDeleteFileBtn() {
 
     // Update modal msg with current file name
@@ -472,11 +473,35 @@ export function handleDeleteFileBtn() {
 }
 
 // Closes delete file modal
-export function handleCloseDeleteModalBtn() {
+export function closeModal() {
     
     const modalEl = document.getElementById("delete-modal-window")
     modalEl.style.display = "none"
+
+}
+
+// Deletes file from local storage
+export function handleConfirmDeleteBtn() {
     
+    const currentFileName = document.getElementById("file-name").dataset.name
+
+    // Pull Local Storage
+    let markdownFilesData = getFilesFromLocalStorage()
+
+    // Remove file from arr
+    const filteredArr = markdownFilesData.filter(file => file.name != currentFileName)
+
+    // Push to Local Storage
+    const updatedDataString = JSON.stringify(filteredArr)
+    localStorage.setItem('markdownFiles', updatedDataString)
+
+    //Render
+    renderFilesInfoToSidebar(filteredArr)
+    renderFile(filteredArr)
+
+    // Close Modal
+    closeModal()
+
 }
 
 // Renders a file obj passed in from Local Storage
@@ -493,5 +518,6 @@ function renderFile(fileObj) {
     document.getElementById("markdown-input").value = fileObj.content
 
     renderMarkdownContent(fileObj.content)
+
 }
 
