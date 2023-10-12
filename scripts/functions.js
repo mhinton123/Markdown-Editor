@@ -310,6 +310,15 @@ function renderContent(fileObjArr) {
 
 export function renderFile(filesObjArr) {
 
+    // Toggle delete btn based on file count
+    const deleteBtn = document.getElementById("hdr-del-icon")
+    if ( filesObjArr.length === 1 ){
+        deleteBtn.style.display = "none"
+    }
+    else {
+        deleteBtn.style.display = "inline"
+    }
+    
     renderContent(filesObjArr)
     renderFilesInfoToSidebar(filesObjArr)
 
