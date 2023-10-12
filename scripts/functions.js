@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'https://jspm.dev/uuid'
 
-const menuIconEl = document.getElementById("hdr-menu-icon")
-const sidebarDivEl = document.getElementById("sb-wr")
+
+
 
 // Parses through #markdown-input and formats the markdown text to #preview-content
 export function renderMarkdownContent(content) {
@@ -321,7 +321,7 @@ export function renderFilesInfoToSidebar(filesArr) {
     const sidebarDivEl = document.getElementById("sb-doclist-wr")
     let filesHtml = ''
     
-    // loop through arr
+    // Concat sidebar Html
     filesArr.forEach(file => {
         const id = uuidv4()
         filesHtml += `
@@ -334,6 +334,7 @@ export function renderFilesInfoToSidebar(filesArr) {
 </div>`
     })
 
+    // Render html
     sidebarDivEl.innerHTML = filesHtml
         
 }
@@ -341,6 +342,9 @@ export function renderFilesInfoToSidebar(filesArr) {
 // Opens and closes sidebar
 export function handleMenuBtn() {
 
+    const menuIconEl = document.getElementById("hdr-menu-icon")
+    const sidebarDivEl = document.getElementById("sb-wr")
+    
     // Check open/close state
     if ( menuIconEl.src.includes("/assets/icon-menu.svg") ) {
         
