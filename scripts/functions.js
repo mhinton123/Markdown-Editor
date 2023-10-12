@@ -1,16 +1,12 @@
 import { v4 as uuidv4 } from 'https://jspm.dev/uuid'
 
-
-
-
 // Parses through #markdown-input and formats the markdown text to #preview-content
 export function renderMarkdownContent(content) {
 
     const previewContentEl = document.getElementById("preview-content") 
     const markdownText = document.getElementById("markdown-input").value
     
-    content = parseMarkdownText(markdownText)
-    
+    content = parseMarkdownText(markdownText) 
     previewContentEl.innerHTML = content
 }
 
@@ -54,73 +50,61 @@ export function parseMarkdownText(markdownText) {
             line = stripHtmlBrackets(line)
             html += `<h6 class="p-h6">${line}</h6>`
         }
-
         // Check for ordered lists
         else if (typeof parseInt(line[0]) === 'number' & line[1] === '.'){
             line = line.substring(3)
             line = stripHtmlBrackets(line)
             line = checkForInlineCode(line)
             html += formatListItems(line, index, textTolineArr, "ol")
-
         }
         else if (typeof parseInt(line[0]) === 'number' && typeof parseInt(line[0]) === 'number'&& line[2] === '.') {
             line = line.substring(4)
             line = stripHtmlBrackets(line)
             line = checkForInlineCode(line)
             html += formatListItems(line, index, textTolineArr, "ol")
-  
         }
-
         // Check for unordered lists
         else if (line.startsWith("- ")){
             line = line.substring(2)
             line = stripHtmlBrackets(line)
             line = checkForInlineCode(line)
             html += formatListItems(line, index, textTolineArr, "ul")
-            
         }
-
         // Check for blockquote    TODO (look into inline links for this)
         else if (line.startsWith("> ")){
             line = line.substring(2)
             html += formatBlockQuote(line)
         }
-
         // Check for start of a code block
         else if (line.startsWith("```") && isCode === false){
             html += `<div class="p-codeblock"><pre>`
             isCode = true
         }
-
         // Check for end of a code block
         else if (line.startsWith("```") && isCode === true){
             html += `</div></pre>`
             isCode = false
         }
-
         // Check for line of code
         else if (isCode === true){
             html += formatCodeblocksLine(line)
         }
-
         // Check for <br>
         else if (line === ''){
             html += `<br>`
         }
-
         // Anything else is body text
         else{
             line = stripHtmlBrackets(line)
             line = checkForInlineCode(line)
             html += `<p class="p-para">${line}</p>`
         }
-
     })
 
     return html
 }
 
-// Nests list items in ol / ul tags based on its postion in htmlS
+// Nests list items in ol / ul tags based on its postion in html
 function formatListItems(innerText, index, textTolineArr, listType) {
     
     const previousLine = textTolineArr[index-1]
@@ -136,7 +120,6 @@ function formatListItems(innerText, index, textTolineArr, listType) {
         else {
             listItem = `<ol class="p-ol">` + listItem
         }
-
         // if next line is undefined or !li -> add </ol> to end of list item
         if (nextLine != undefined){
             if ((!(typeof parseInt(nextLine[0]) === 'number' && nextLine[1] === '.')) && (!(typeof parseInt(nextLine[0]) === 'number' && nextLine[2] === '.')))
@@ -148,8 +131,6 @@ function formatListItems(innerText, index, textTolineArr, listType) {
 
         return listItem
     }
-    
-
     if ( listType === "ul" ){
         // if prev line is undefined or !li  ->  add <ul class="p-ul"> to list item
         if (previousLine != undefined){
@@ -159,7 +140,6 @@ function formatListItems(innerText, index, textTolineArr, listType) {
         else {
             listItem = `<ul class="p-ul">` + listItem
         }
-
         // if next line is undefined or !li  ->  add </ul> to end of list item
         if (nextLine != undefined){
             if ((!nextLine.startsWith("- ")))
@@ -172,7 +152,6 @@ function formatListItems(innerText, index, textTolineArr, listType) {
         return listItem
 
     }
-
 }
 
 // add the link in <a> tags with href
@@ -203,7 +182,6 @@ function formatCodeblocksLine(line) {
     
     line = stripHtmlBrackets(line)
     return `<p class="p-code markdown-code">${line}</p>`
-    
 }
 
 function checkForInlineCode(line) {
@@ -235,9 +213,7 @@ export function getFilesFromLocalStorage() {
     // Check Local Storage for cached files
     if (JSON.parse(localStorage.getItem("markdownFiles")) && JSON.parse(localStorage.getItem("markdownFiles")).length > 0) {
         return JSON.parse(localStorage.getItem("markdownFiles"))
-        
     }
-    
     // Create default welcome file and store in Local Storage
     else {
         
@@ -277,13 +253,11 @@ This markdown editor allows for inline-code snippets, like this: \`<p>I'm inline
 \`\`\``
 
         // Push welcome file to Local storage
-        const welcomeFile = [
-            {
+        const welcomeFile = [{
                 "createdAt": new Date(),
                 "name": "welcome.md",
                 "content": welcomeContent
-              }
-        ]
+              }]
 
         localStorage.setItem("markdownFiles", JSON.stringify(welcomeFile))
         return JSON.parse(localStorage.getItem("markdownFiles"))
@@ -325,7 +299,6 @@ export function renderFile(filesObjArr) {
     
     renderContent(filesObjArr)
     renderFilesInfoToSidebar(filesObjArr)
-
 }
 
 // Reders all files from Local Storage to #sb-doclist-wr
@@ -356,7 +329,6 @@ export function renderFilesInfoToSidebar(filesArr) {
 
     // Render html
     sidebarDivEl.innerHTML = filesHtml
-        
 }
 
 // Opens and closes sidebar
@@ -373,7 +345,6 @@ export function handleMenuBtn() {
 
         // Change hamburger icon to 'X'
         menuIconEl.src = "/assets/icon-close.svg"
-    
     }
     else {
 
@@ -382,9 +353,7 @@ export function handleMenuBtn() {
 
         // Change hamburger icon to 'X'
         menuIconEl.src = "/assets/icon-menu.svg"
-    
     }
-
 }
 
 // Updates file in Local storage
@@ -410,8 +379,6 @@ export function handleSaveChangesBtn(){
     }
     else {
         diplayPopupMsg("Document Saved")
-            // Pull Local Storage
-        
         
         // Update File Data
         filesObjArr.forEach(file => {
@@ -420,10 +387,8 @@ export function handleSaveChangesBtn(){
                 file.content = updatedFileContent
                 file.name = updatedFileName
                 file.createdAt = new Date().toISOString()
-
             }
         })
-
 
         renderFile(filesObjArr)
 
@@ -473,8 +438,6 @@ export function handleNewDocBtn() {
     // Push to Local Storage
     const updatedDataString = JSON.stringify(filesObjArr)
     localStorage.setItem('markdownFiles', updatedDataString)
-    
-    
 }
 
 // Renders target file from Local Storage
@@ -502,7 +465,6 @@ export function handleDeleteFileBtn() {
 
     deleteFileModalMsg.innerText = deleteFileModalMsg.innerText.replace("%#FILE-NAME#%", currentFileName)
     modalEl.style.display = "block"
-
 }
 
 // Closes delete file modal
@@ -510,7 +472,6 @@ export function closeModal() {
     
     const modalEl = document.getElementById("delete-modal-window")
     modalEl.style.display = "none"
-
 }
 
 // Deletes file from local storage
@@ -533,7 +494,6 @@ export function handleConfirmDeleteBtn() {
 
     // Close Modal
     closeModal()
-
 }
 
 // Renders Light theme 

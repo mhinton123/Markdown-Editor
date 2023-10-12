@@ -1,69 +1,67 @@
-import {getFilesFromLocalStorage, renderMarkdownContent, renderFile, handleMenuBtn, handleSaveChangesBtn, handleNewDocBtn, handleChangeFile, handleDeleteFileBtn, closeModal, handleConfirmDeleteBtn, handleThemeSlider, handleExportFileBtn, handlePreviewBtn} from '/scripts/functions.js'
+import * as m from '/scripts/functions.js'
 
 const markdownInputEl = document.getElementById("markdown-input")
 const fileNameInputEl = document.getElementById("file-name")
-
 let previewHtml = ``
 
 // On startup
-let filesObjArr = getFilesFromLocalStorage()
-renderFile(filesObjArr)
+const filesObjArr = m.getFilesFromLocalStorage()
+m.renderFile(filesObjArr)
 
-// Runs everytime the user edits the input area
+// Runs everytime the user edits the markdon input area
 markdownInputEl.addEventListener("input", function(e){
     
     // Show save btn
     const saveBtn = document.getElementById("save-doc-btn")
     saveBtn.style.display = "flex"
     
+    // Render markdown -> preview
     previewHtml =''
-    renderMarkdownContent(previewHtml)
-
+    m.renderMarkdownContent(previewHtml)
 })
 
 // Show save button if file name is edited
 fileNameInputEl.addEventListener("input", function(e){
     
-    // Show save btn
     const saveBtn = document.getElementById("save-doc-btn")
     saveBtn.style.display = "flex"
 })
 
 
-// Handles any buttons clicked on the page
+// Handles any buttons on the page
 document.addEventListener("click", function(e) {
 
     if ( e.target.id === "hdr-menu-icon" ) {
-        handleMenuBtn()
+        m.handleMenuBtn()
     }
     else if ( e.target.id === "save-doc-btn" ) {
-        handleSaveChangesBtn()
+        m.handleSaveChangesBtn()
         
     }
     else if ( e.target.id === "newdoc-btn" ) {
-        handleNewDocBtn()
+        m.handleNewDocBtn()
     }
     else if ( e.target.id === "hdr-del-icon" ) {
-        handleDeleteFileBtn()
+        m.handleDeleteFileBtn()
     }
     else if ( e.target.id === "delete-modal-close-btn" ) {
-        closeModal()
+        m.closeModal()
     }
     else if ( e.target.id === "delete-modal-btn" ){
-        handleConfirmDeleteBtn()
+        m.handleConfirmDeleteBtn()
     }
     else if ( e.target.id === "theme-slider" ) {
-        handleThemeSlider()
+        m.handleThemeSlider()
     } 
     else if ( e.target.id === "export-file") {
-        handleExportFileBtn()
+        m.handleExportFileBtn()
     }
     else if ( e.target.id === "preview-icon" ) {
-        handlePreviewBtn()
+        m.handlePreviewBtn()
     }
     else if ( e.target && e.target.classList[0].includes('sb-doc') ) {
         const targetFileBtn = e.target.closest('.sb-doc-wr')
-        handleChangeFile(targetFileBtn)
+        m.handleChangeFile(targetFileBtn)
     }
 
 })
