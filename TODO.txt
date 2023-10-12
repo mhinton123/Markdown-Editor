@@ -21,3 +21,14 @@
 
 -- fix not being able to delete all files
 
+
+
+-- when a change is made to local Storage
+    -- save changes
+    -- delete file
+    -- new file
+
+    -- render()
+        -- rednerContent()
+        -- renderSidebar
+

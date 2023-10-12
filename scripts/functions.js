@@ -3,8 +3,15 @@ import { v4 as uuidv4 } from 'https://jspm.dev/uuid'
 const menuIconEl = document.getElementById("hdr-menu-icon")
 const sidebarDivEl = document.getElementById("sb-wr")
 
-function stripHtmlBrackets(text) {
-    return text.replace(/</g, '&lt;').replace(/>/g, '&gt;')
+// Parses through #markdown-input and formats the markdown text to #preview-content
+export function renderMarkdownContent(content) {
+
+    const previewContentEl = document.getElementById("preview-content") 
+    const markdownText = document.getElementById("markdown-input").value
+    
+    content = parseMarkdownText(markdownText)
+    
+    previewContentEl.innerHTML = content
 }
 
 // Formats each line of input based on markdown syntax
@@ -217,6 +224,11 @@ function checkForInlineCode(line) {
     return line
 }
 
+// Strips '<' and '>' from text to prevent browser rendering html
+function stripHtmlBrackets(text) {
+    return text.replace(/</g, '&lt;').replace(/>/g, '&gt;')
+}
+
 // Returns files ObjArr from Local Storage
 export function getFilesFromLocalStorage() {
 
@@ -264,6 +276,7 @@ This markdown editor allows for inline-code snippets, like this: \`<p>I'm inline
 </main>
 \`\`\``
 
+        // Push welcome file to Local storage
         const welcomeFile = [
             {
                 "createdAt": new Date(),
@@ -277,16 +290,28 @@ This markdown editor allows for inline-code snippets, like this: \`<p>I'm inline
     }
 }
 
-// Runs at startup to render the users last edited file from Local Storage
-export function renderLastEditedFile(filesArr) {
+// Renders a file obj passed in from Local Storage
+function renderContent(fileObjArr) {
 
-    const lastEditedFile = getLastEditedFile(filesArr)
-    const markdownInputEl = document.getElementById("markdown-input")
+    // Get first file in arr
+    const fileObj = fileObjArr[0]
 
-    markdownInputEl.value = lastEditedFile.content
+    // Update file name
+    const fileNameEl = document.getElementById("file-name")
+    fileNameEl.value = fileObj.name
+    fileNameEl.dataset.name = fileObj.name
 
-    renderMarkdownContent(lastEditedFile.content)
-    renderFileName(lastEditedFile.name)
+    // Render #markdown-input
+    document.getElementById("markdown-input").value = fileObj.content
+
+    renderMarkdownContent(fileObj.content)
+
+}
+
+export function renderFile(filesObjArr) {
+
+    renderContent(filesObjArr)
+    renderFilesInfoToSidebar(filesObjArr)
 
 }
 
@@ -311,50 +336,6 @@ export function renderFilesInfoToSidebar(filesArr) {
 
     sidebarDivEl.innerHTML = filesHtml
         
-}
-
-// Gets last edited file from Local Storage
-function getLastEditedFile(filesArr) {
-    
-    let lastEditedFile = filesArr[0]
-    let highestDate = 0
-    let highestTime = 0
-
-    filesArr.forEach(file => {
-        const date = (file.createdAt.replace(/-/g, "")).substring(0, 8)
-        const time = (file.createdAt.replace(/:/g, "")).substring(11, 17)
-        
-        if ( date > highestDate ) {
-            lastEditedFile = file
-        }
-        else if ( date === highestDate ) {
-            if ( time > highestTime ) {
-                lastEditedFile = file
-            }
-        }
-    })
-
-    return lastEditedFile
-}
-
-// Parses through #markdown-input and formats the markdown text to #preview-content
-export function renderMarkdownContent(content) {
-
-    const previewContentEl = document.getElementById("preview-content") 
-    const markdownText = document.getElementById("markdown-input").value
-    
-    content = parseMarkdownText(markdownText)
-    
-    previewContentEl.innerHTML = content
-}
-
-// Renders file.name to #file-name
-function renderFileName(name) {
-    
-    const fileNameEl = document.getElementById("file-name")
-    fileNameEl.value = name
-    fileNameEl.setAttribute('data-name', name);
-
 }
 
 // Opens and closes sidebar
@@ -505,28 +486,5 @@ export function handleConfirmDeleteBtn() {
 
 }
 
-// Renders a file obj passed in from Local Storage
-function renderContent(fileObjArr) {
 
-    // Get first file in arr
-    const fileObj = fileObjArr[0]
-
-    // Update file name
-    const fileNameEl = document.getElementById("file-name")
-    fileNameEl.value = fileObj.name
-    fileNameEl.dataset.name = fileObj.name
-
-    // Render #markdown-input
-    document.getElementById("markdown-input").value = fileObj.content
-
-    renderMarkdownContent(fileObj.content)
-
-}
-
-export function renderFile(filesObjArr) {
-
-    renderContent(filesObjArr)
-    renderFilesInfoToSidebar(filesObjArr)
-
-}
 
