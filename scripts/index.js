@@ -1,4 +1,4 @@
-import {getFilesFromLocalStorage, renderLastEditedFile, renderMarkdownContent, renderFilesInfoToSidebar, handleMenuBtn, handleSaveChangesBtn, handleNewDocBtn, handleChangeFile, handleDeleteFileBtn, closeModal, handleConfirmDeleteBtn} from '/scripts/functions.js'
+import {getFilesFromLocalStorage, renderMarkdownContent, renderFile, handleMenuBtn, handleSaveChangesBtn, handleNewDocBtn, handleChangeFile, handleDeleteFileBtn, closeModal, handleConfirmDeleteBtn} from '/scripts/functions.js'
 
 const markdownInputEl = document.getElementById("markdown-input")
 
@@ -6,9 +6,8 @@ const markdownInputEl = document.getElementById("markdown-input")
 let previewHtml = ``
 
 // On startup
-let markdownFilesData = getFilesFromLocalStorage()
-renderLastEditedFile(markdownFilesData)
-renderFilesInfoToSidebar(markdownFilesData)
+let filesObjArr = getFilesFromLocalStorage()
+renderFile(filesObjArr)
 
 // Runs everytime the user edits the input area
 markdownInputEl.addEventListener("input", function(e){

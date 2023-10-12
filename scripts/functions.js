@@ -217,6 +217,7 @@ function checkForInlineCode(line) {
     return line
 }
 
+// Returns files ObjArr from Local Storage
 export function getFilesFromLocalStorage() {
 
     // Check Local Storage for cached files
@@ -390,10 +391,10 @@ export function handleSaveChangesBtn(){
     
 
     // Pull Local Storage
-    let markdownFilesData = getFilesFromLocalStorage()
+    let filesObjArr = getFilesFromLocalStorage()
     
     // Update File Data
-    markdownFilesData.forEach(file => {
+    filesObjArr.forEach(file => {
         if (file.name === currentFileName) {
             
             file.content = updatedFileContent
@@ -404,10 +405,10 @@ export function handleSaveChangesBtn(){
     })
 
 
-    renderFilesInfoToSidebar(markdownFilesData)
+    renderFile(filesObjArr)
 
     // Push updated data to Local Storage
-    const updatedDataString = JSON.stringify(markdownFilesData)
+    const updatedDataString = JSON.stringify(filesObjArr)
     localStorage.setItem('markdownFiles', updatedDataString)
 
     // Update #file-name data attribute
@@ -417,7 +418,7 @@ export function handleSaveChangesBtn(){
 // Created a new file and pushes it to local storage
 export function handleNewDocBtn() {
     
-    // Change file name
+    // Change headers file name
     const fileNameEl = document.getElementById("file-name")
     fileNameEl.value = "new-document.md"
     fileNameEl.dataset.name = "new-document.md"
@@ -427,8 +428,8 @@ export function handleNewDocBtn() {
     document.getElementById("preview-content").innerHTML = ''
 
     // Push new file to Local storage
-    let markdownFilesData = getFilesFromLocalStorage()
-    markdownFilesData.push(
+    let filesObjArr = getFilesFromLocalStorage()
+    filesObjArr.unshift(
         {
             createdAt: new Date().toISOString(),
             name: "new-document.md",
@@ -436,10 +437,10 @@ export function handleNewDocBtn() {
         }
         )
 
-    renderFilesInfoToSidebar(markdownFilesData)
+    renderFile(filesObjArr)
     
     // Push to Local Storage
-    const updatedDataString = JSON.stringify(markdownFilesData)
+    const updatedDataString = JSON.stringify(filesObjArr)
     localStorage.setItem('markdownFiles', updatedDataString)
     
     
@@ -452,12 +453,12 @@ export function handleChangeFile(targetFileBtn) {
     const targetFileName = targetFileBtn.querySelector(".sb-doc-name").innerText
 
     // Pull Local Storage
-    let markdownFilesData = getFilesFromLocalStorage()
+    let filesObjArr = getFilesFromLocalStorage()
     
     // Get target file
-    const targetFileObj = markdownFilesData.filter(file => file.name === targetFileName)
+    const targetFileObj = filesObjArr.filter(file => file.name === targetFileName)
 
-    renderFile(targetFileObj)
+    renderContent(targetFileObj)
 }
 
 // Opens delete modal
@@ -497,7 +498,6 @@ export function handleConfirmDeleteBtn() {
     localStorage.setItem('markdownFiles', updatedDataString)
 
     //Render
-    renderFilesInfoToSidebar(filteredArr)
     renderFile(filteredArr)
 
     // Close Modal
@@ -506,9 +506,10 @@ export function handleConfirmDeleteBtn() {
 }
 
 // Renders a file obj passed in from Local Storage
-function renderFile(fileObj) {
+function renderContent(fileObjArr) {
 
-    fileObj = fileObj[0]
+    // Get first file in arr
+    const fileObj = fileObjArr[0]
 
     // Update file name
     const fileNameEl = document.getElementById("file-name")
@@ -519,6 +520,13 @@ function renderFile(fileObj) {
     document.getElementById("markdown-input").value = fileObj.content
 
     renderMarkdownContent(fileObj.content)
+
+}
+
+export function renderFile(filesObjArr) {
+
+    renderContent(filesObjArr)
+    renderFilesInfoToSidebar(filesObjArr)
 
 }
 
