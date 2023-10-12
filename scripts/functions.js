@@ -490,5 +490,46 @@ export function handleConfirmDeleteBtn() {
 
 }
 
+// Renders Light theme 
+export function handleThemeSlider() {
+     
+    const themeSliderEl = document.getElementById("theme-slider")
+
+    if ( themeSliderEl.checked ) {
+        document.head.innerHTML = `  <!-- Stylesheets -->
+        <link rel="stylesheet" href="/styles/reset.css">
+        <link rel="stylesheet" href="/styles/style.css">
+        <link rel="stylesheet" href="/styles/fonts&colours.css">
+        <link rel="stylesheet" href="/styles/light-style.css">
+      
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400&family=Roboto+Slab:wght@300;400;700&family=Roboto:wght@300;400;500;700&family=Smythe&display=swap" rel="stylesheet">
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+        <title>Frontend Mentor | In-browser markdown editor</title>`
+    }
+    else {
+        document.head.innerHTML = `  <!-- Stylesheets -->
+        <link rel="stylesheet" href="/styles/reset.css">
+        <link rel="stylesheet" href="/styles/light-style.css">
+        <link rel="stylesheet" href="/styles/style.css">
+        <link rel="stylesheet" href="/styles/fonts&colours.css">
+      
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400&family=Roboto+Slab:wght@300;400;700&family=Roboto:wght@300;400;500;700&family=Smythe&display=swap" rel="stylesheet">
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+        <title>Frontend Mentor | In-browser markdown editor</title>`
+    }
+}
+
 
 

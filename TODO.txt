@@ -15,7 +15,9 @@
 
 -- alert feedback when savechanges btn clicked
 
--- sort document list in sidebar by date & time
+-- add time to sidebar
+
+-- import whole js file
 
 
 
@@ -23,12 +25,10 @@
 
 
 
--- when a change is made to local Storage
-    -- save changes
-    -- delete file
-    -- new file
-
-    -- render()
-        -- rednerContent()
-        -- renderSidebar
-
+-- when slider is checked
+    -- light theme is enabled
+        -- get the head tag
+        -- if checked
+            -- change innerHTML so that light theme is at the bottom
+        -- else
+            -- change innerHtml so that dark theme is at the bottom
