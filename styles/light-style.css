@@ -1,0 +1,37 @@
+.main-hdr {
+    background-color: var(--grey-200);
+}
+
+.markdown-col {
+    border-right: 1px solid var(--grey-300);
+}
+
+.markdown-content, #markdown-input, .preview-content {
+    background-color: white;
+    
+}
+
+#markdown-input {
+    color: var(--grey-700);
+}
+
+.heading-s {
+    color: black;
+}
+
+.p-h1, .p-h2, .p-h3, .p-h4, .p-h5, .p-blockquote, .markdown-code, .p-link, .p-link:visited {
+    color: var(--grey-700);
+}
+
+.p-para, .p-ol, .p-ul, .delete-modal-msg {
+    color: var(--grey-600);
+}
+
+.p-blockquote, .p-codeblock {
+    background-color: var(--grey-200);
+}
+
+.sb-title {
+    color: var(--grey-400);
+}
+
