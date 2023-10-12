@@ -602,3 +602,19 @@ export function handleExportFileBtn() {
     URL.revokeObjectURL(url)
 }
 
+// Toggle markdown-col hidden state and preview icon
+export function handlePreviewBtn() {
+    
+    const markdownCol = document.getElementById('markdown-col');
+    const previewCol = document.getElementById('preview-col');
+    const previewBtn = document.getElementById('preview-icon')
+  
+    if (markdownCol.style.display === 'none') {
+      markdownCol.style.display = 'flex';
+      previewBtn.src = '/assets/icon-show-preview.svg'
+    } else {
+      markdownCol.style.display = 'none';
+      previewCol.style.maxWidth = '100%';
+      previewBtn.src = '/assets/icon-hide-preview.svg'
+    }
+}

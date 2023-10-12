@@ -1,20 +1,22 @@
 
--- make the input name grow with length
 
--- add hover state for small icons`
-
--- add time to sidebar
+-- when no changes are made, save button is hidden
 
 -- import whole js file
-
--- fix not being able to delete all files
-
--- add scroll bar when to many files in sidebar
 
 -- preview btn
 
 -- maybe export an index.html page?
 
+
+
+
+-- when new file btn is clicked
+
+    -- get files arr
+    -- filter files arr by checking if file.name.includes "new-document"
+    -- newdoc incremenet = check length of filtered arr + 1 
+    -- set new doc name to "new-document${incremenet}"
 
 
 
