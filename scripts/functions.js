@@ -324,11 +324,18 @@ export function renderFilesInfoToSidebar(filesArr) {
     // Concat sidebar Html
     filesArr.forEach(file => {
         const id = uuidv4()
+        const date = file.createdAt.substring(0, 10)
+        const time = file.createdAt.substring(11, 16)
+
+
         filesHtml += `
 <div class="sb-doc-wr" id="${id}">
 <img src="/assets/icon-document.svg" alt="document-icon" class="sb-doc-document-icon">
 <div class="sb-doc-details-wr">
-    <p class="sb-doc-date body-m">${file.createdAt.substring(0, 10)}</p>
+    <div class="sb-doc-date-time-wr">
+        <p class="sb-doc-date body-m">${date}</p>
+        <p class="sb-doc-time body-m">${time}</p>
+    </div>        
     <p class="sb-doc-name heading-m">${file.name}</p>
 </div>
 </div>`

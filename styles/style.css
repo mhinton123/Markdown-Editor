@@ -33,6 +33,10 @@ ul {
   background-color: var(--orange-hover);
 }
 
+.primary-btn, .hdr-del-icon, #hdr-menu-icon, .sb-doc-wr, .preview-icon{
+  cursor: pointer;
+}
+
 /* Sidebar */
 #sb-wr {
   width: 250px;
@@ -58,7 +62,7 @@ ul {
 
 #newdoc-btn {
   width: 100%;
-  margin-bottom: 25px;
+  margin-bottom: 40px;
 }
 
 .sb-doc-wr {
@@ -66,8 +70,15 @@ ul {
   align-items: center;
   gap: 0px;
   padding-right: 30px;
+  margin-bottom: 20px;
 }
 
+.sb-doc-date-time-wr {
+  display: flex;
+  justify-content: space-between;
+  gap: 45px;
+  width: 100%;
+}
 .sb-doc-document-icon {
   margin-right: 11px;
 }
@@ -80,10 +91,11 @@ ul {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  margin-bottom: 30px;
+  padding-bottom: 0px;
   word-wrap: break-word; /* This property ensures that long words will break and wrap onto the next line */
   overflow-wrap: break-word; /* This is the standard name for the property, while word-wrap is an older name (for compatibility) */
   max-width: 100%;
+  justify-content: center;
 }
 
 .sb-theme-wr {
@@ -116,6 +128,10 @@ ul {
   justify-content: center;
   align-items: center;
   background-color: var(--grey-700);
+}
+
+.hdr-menu-icon-wr:hover {
+  background-color: var(--orange);
 }
 
 .hdr-menu-icon {
@@ -182,11 +198,16 @@ h1 {
 .hdr-doc-name {
   background-color: var(--grey-800);
   border: none;
+  width: 250px;
 }
 
 .hdr-doc-name:focus {
   outline: none;
   border-bottom: 1px solid #979797;
+}
+
+.hdr-del-icon:hover {
+  fill: var(--orange)
 }
 
 

@@ -1,7 +1,5 @@
 
-
-
--- add cursor for all buttons
+-- make the input name grow with length
 
 -- add hover state for small icons`
 
@@ -12,6 +10,10 @@
 -- fix not being able to delete all files
 
 -- add scroll bar when to many files in sidebar
+
+-- preview btn
+
+-- maybe export an index.html page?
 
 
 
