@@ -17,24 +17,7 @@
 
 -- sort document list in sidebar by date & time
 
--- add transparency to delete modal
+
 
 -- fix not being able to delete all files
 
-
-
--- add delete feature
-    -- when the bin is clicked
-        --  -- get name of file from #filename.dataset.name (targetFileName)
-        -- update file name in modal message
-        -- modal pops up asking if they are sure
-        
--- if yes button is clicked
-    -- get name of file from #filename.dataset.name (targetFileName)
-    -- pull local storage 
-    -- filter file arr => file.name != targetFileName (filteredArr)
-    -- push filteredArr to local storage (stringify)
-    -- renderFile(last edited file)
-
--- if no button is clicked
-    -- hide modal
