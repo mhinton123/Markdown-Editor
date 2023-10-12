@@ -318,6 +318,10 @@ export function renderFile(filesObjArr) {
     else {
         deleteBtn.style.display = "inline"
     }
+
+    // Hide save btn
+    const saveBtn = document.getElementById("save-doc-btn")
+    saveBtn.style.display = "none"
     
     renderContent(filesObjArr)
     renderFilesInfoToSidebar(filesObjArr)
@@ -443,13 +447,23 @@ export function handleNewDocBtn() {
     // Clear #markdown-input & #preview-content
     document.getElementById("markdown-input").value = ''
     document.getElementById("preview-content").innerHTML = ''
-
+    
     // Push new file to Local storage
     let filesObjArr = getFilesFromLocalStorage()
+    let fileName = ''
+    // Increment 'new-documentX' if required
+    const length = (filesObjArr.filter(file => file.name.includes("new-document"))).length
+    if ( length > 0 ) {
+        fileName = `new-document(${length}).md`
+    }
+    else {
+        fileName = `new-document.md`
+    } 
+
     filesObjArr.unshift(
         {
             createdAt: new Date().toISOString(),
-            name: "new-document.md",
+            name: fileName,
             content: ''
         }
         )

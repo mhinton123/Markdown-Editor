@@ -1,7 +1,7 @@
 import {getFilesFromLocalStorage, renderMarkdownContent, renderFile, handleMenuBtn, handleSaveChangesBtn, handleNewDocBtn, handleChangeFile, handleDeleteFileBtn, closeModal, handleConfirmDeleteBtn, handleThemeSlider, handleExportFileBtn, handlePreviewBtn} from '/scripts/functions.js'
 
 const markdownInputEl = document.getElementById("markdown-input")
-
+const fileNameInputEl = document.getElementById("file-name")
 
 let previewHtml = ``
 
@@ -12,10 +12,23 @@ renderFile(filesObjArr)
 // Runs everytime the user edits the input area
 markdownInputEl.addEventListener("input", function(e){
     
+    // Show save btn
+    const saveBtn = document.getElementById("save-doc-btn")
+    saveBtn.style.display = "flex"
+    
     previewHtml =''
     renderMarkdownContent(previewHtml)
 
 })
+
+// Show save button if file name is edited
+fileNameInputEl.addEventListener("input", function(e){
+    
+    // Show save btn
+    const saveBtn = document.getElementById("save-doc-btn")
+    saveBtn.style.display = "flex"
+})
+
 
 // Handles any buttons clicked on the page
 document.addEventListener("click", function(e) {

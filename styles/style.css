@@ -199,6 +199,10 @@ h1 {
   width: 250px;
 }
 
+.hdr-doc-wr:hover .hdr-doc-name {
+  color: var(--orange);
+}
+
 .hdr-doc-name:focus {
   outline: none;
   border-bottom: 1px solid #979797;
