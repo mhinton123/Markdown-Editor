@@ -62,12 +62,12 @@
               <img src="/assets/icon-document.svg" alt="document-icon" class="hdr-doc-icon">
               <div class="hdr-doc-details-wr">
                 <p class="hdr-doc-title body-m">Document Name</p>
-                <input type="text" class="hdr-doc-name heading-m" id="file-name"></input>
+                <input type="text" class="hdr-doc-name heading-m" id="file-name" maxlength="25" required></input>
               </div>
             </div>
             <div class="hdr-doc-btns-wr">
               <img src="/assets/icon-delete.svg" alt="delete-icon" class="hdr-del-icon" id="hdr-del-icon">
-              <button id="save-doc-btn" class="primary-btn heading-m">
+              <button id="save-doc-btn" class="primary-btn heading-m" type="submit">
                 <img src="/assets/icon-save.svg" alt="save-icon" class="save-doc-icon">
                 Save Changes
               </button>
@@ -101,6 +101,10 @@
       </main>
       <!-- Main end -->
 
+      <!-- Pop up Message -->
+      <div id="popupContainer">
+        <p id="popupMessage">This is a popup message!</p>
+      </div>
   </div>
   
   

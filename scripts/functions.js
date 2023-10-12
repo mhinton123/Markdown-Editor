@@ -374,30 +374,42 @@ export function handleSaveChangesBtn(){
     const updatedFileContent = document.getElementById("markdown-input").value
     const updatedFileName = document.getElementById("file-name").value
     
+    // Check file name is > 0 & < 25 chars
+    if ( updatedFileName.length < 4 ) {
+        diplayPopupMsg("'Document Name' must have atleast 1 character")
+    } 
+    else if (updatedFileName.length > 20){
+        diplayPopupMsg("'Document Name' must not exceed 20 characters")
+    }
+    else if ((!updatedFileName.includes(".md"))) {
+        diplayPopupMsg("'Document Name' must include '.md' extension")
+    }
+    else {
+        diplayPopupMsg("Document Saved")
+            // Pull Local Storage
+        let filesObjArr = getFilesFromLocalStorage()
+        
+        // Update File Data
+        filesObjArr.forEach(file => {
+            if (file.name === currentFileName) {
+                
+                file.content = updatedFileContent
+                file.name = updatedFileName
+                file.createdAt = new Date().toISOString()
 
-    // Pull Local Storage
-    let filesObjArr = getFilesFromLocalStorage()
-    
-    // Update File Data
-    filesObjArr.forEach(file => {
-        if (file.name === currentFileName) {
-            
-            file.content = updatedFileContent
-            file.name = updatedFileName
-            file.createdAt = new Date().toISOString()
-
-        }
-    })
+            }
+        })
 
 
-    renderFile(filesObjArr)
+        renderFile(filesObjArr)
 
-    // Push updated data to Local Storage
-    const updatedDataString = JSON.stringify(filesObjArr)
-    localStorage.setItem('markdownFiles', updatedDataString)
+        // Push updated data to Local Storage
+        const updatedDataString = JSON.stringify(filesObjArr)
+        localStorage.setItem('markdownFiles', updatedDataString)
 
-    // Update #file-name data attribute
-    document.getElementById("file-name").dataset.name = updatedFileName
+        // Update #file-name data attribute
+        document.getElementById("file-name").dataset.name = updatedFileName
+    }
 }
 
 // Created a new file and pushes it to local storage
@@ -529,6 +541,24 @@ export function handleThemeSlider() {
         <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
         <title>Frontend Mentor | In-browser markdown editor</title>`
     }
+}
+
+export function diplayPopupMsg(message) {
+    const popupEl = document.getElementById("popupContainer")
+    const popupMsg = document.getElementById("popupMessage")
+
+    popupMsg.innerText = message
+        
+    // Apply CSS
+    popupEl.style.display = "block"
+    
+    setTimeout(function() {
+        popupEl.classList.add("fadeOut")
+        setTimeout(function() {
+        popupEl.style.display = "none"
+        popupEl.classList.remove("fadeOut")
+        }, 2000)
+    }, 2000)
 }
 
 

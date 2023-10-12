@@ -1,8 +1,5 @@
 
 
-
--- add light theme and get theme switch working
-
 -- put a character limit on the text area
 
 -- add cursor for all buttons
