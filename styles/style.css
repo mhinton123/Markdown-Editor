@@ -22,8 +22,11 @@ ul {
   align-items: center;
   background-color: var(--orange);
   border: none;
-  padding: 11px 0px;
+  padding: 11px 11px;
   border-radius: 4px;  
+  display: flex;
+  gap: 8px;
+  justify-content: center;
 }
 
 .primary-btn:hover {
@@ -341,7 +344,7 @@ h1 {
 
 /* Pop up message */ 
 
-#popupContainer {
+#popup-container {
   display: none;
   position: fixed;
   top: 36px;
@@ -354,12 +357,12 @@ h1 {
   z-index: 9999;
 }
 
-#popupMessage {
+#popup-message {
   font-size: 14px;
   font-family: 'Roboto Slab', serif;
 }
 
-.fadeOut {
+.fade-out {
   animation: fadeOut 2s;
 }
 

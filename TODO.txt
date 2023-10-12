@@ -1,31 +1,18 @@
 
 
--- put a character limit on the text area
 
 -- add cursor for all buttons
 
--- add hover state for small icons
-
--- find out all markdown rules
-
--- fix name input to > 0 && < 25 characters
-
--- alert feedback when savechanges btn clicked
+-- add hover state for small icons`
 
 -- add time to sidebar
 
 -- import whole js file
 
-
-
 -- fix not being able to delete all files
 
 
 
--- when slider is checked
-    -- light theme is enabled
-        -- get the head tag
-        -- if checked
-            -- change innerHTML so that light theme is at the bottom
-        -- else
-            -- change innerHtml so that dark theme is at the bottom
+
+
+

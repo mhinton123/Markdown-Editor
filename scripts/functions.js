@@ -378,8 +378,8 @@ export function handleSaveChangesBtn(){
     if ( updatedFileName.length < 4 ) {
         diplayPopupMsg("'Document Name' must have atleast 1 character")
     } 
-    else if (updatedFileName.length > 20){
-        diplayPopupMsg("'Document Name' must not exceed 20 characters")
+    else if (updatedFileName.length > 30){
+        diplayPopupMsg("'Document Name' must not exceed 30 characters")
     }
     else if ((!updatedFileName.includes(".md"))) {
         diplayPopupMsg("'Document Name' must include '.md' extension")
@@ -544,8 +544,8 @@ export function handleThemeSlider() {
 }
 
 export function diplayPopupMsg(message) {
-    const popupEl = document.getElementById("popupContainer")
-    const popupMsg = document.getElementById("popupMessage")
+    const popupEl = document.getElementById("popup-container")
+    const popupMsg = document.getElementById("popup-message")
 
     popupMsg.innerText = message
         
@@ -553,13 +553,32 @@ export function diplayPopupMsg(message) {
     popupEl.style.display = "block"
     
     setTimeout(function() {
-        popupEl.classList.add("fadeOut")
+        popupEl.classList.add("fade-out")
         setTimeout(function() {
         popupEl.style.display = "none"
-        popupEl.classList.remove("fadeOut")
+        popupEl.classList.remove("fade-out")
         }, 2000)
     }, 2000)
 }
 
+// Allows user to export current file to thier computer eith .md extention
+export function handleExportFileBtn() {
 
+    // Get current file Obj
+    const currentFileName = document.getElementById("file-name").dataset.name
+    let filesObjArr = getFilesFromLocalStorage()
+    const currentFileObj = filesObjArr.filter(file => file.name === currentFileName)[0]
+    
+
+    const blob = new Blob([currentFileObj.content], { type: "text/markdown" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = currentFileObj.name;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
 

@@ -1,4 +1,4 @@
-import {getFilesFromLocalStorage, renderMarkdownContent, renderFile, handleMenuBtn, handleSaveChangesBtn, handleNewDocBtn, handleChangeFile, handleDeleteFileBtn, closeModal, handleConfirmDeleteBtn, handleThemeSlider, diplayPopupMsg} from '/scripts/functions.js'
+import {getFilesFromLocalStorage, renderMarkdownContent, renderFile, handleMenuBtn, handleSaveChangesBtn, handleNewDocBtn, handleChangeFile, handleDeleteFileBtn, closeModal, handleConfirmDeleteBtn, handleThemeSlider, handleExportFileBtn} from '/scripts/functions.js'
 
 const markdownInputEl = document.getElementById("markdown-input")
 
@@ -42,6 +42,9 @@ document.addEventListener("click", function(e) {
     else if ( e.target.id === "theme-slider" ) {
         handleThemeSlider()
     } 
+    else if ( e.target.id === "export-file") {
+        handleExportFileBtn()
+    }
     else if ( e.target && e.target.classList[0].includes('sb-doc') ) {
         const targetFileBtn = e.target.closest('.sb-doc-wr')
         handleChangeFile(targetFileBtn)
