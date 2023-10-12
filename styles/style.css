@@ -64,8 +64,12 @@ ul {
 .sb-doc-wr {
   display: flex;
   align-items: center;
-  gap: 11px;
-  margin-right: 20px;
+  gap: 0px;
+  padding-right: 30px;
+}
+
+.sb-doc-document-icon {
+  margin-right: 11px;
 }
 
 .sb-doc-wr:hover {

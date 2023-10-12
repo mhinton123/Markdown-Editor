@@ -570,15 +570,15 @@ export function handleExportFileBtn() {
     const currentFileObj = filesObjArr.filter(file => file.name === currentFileName)[0]
     
 
-    const blob = new Blob([currentFileObj.content], { type: "text/markdown" });
-    const url = URL.createObjectURL(blob);
+    const blob = new Blob([currentFileObj.content], { type: "text/markdown" })
+    const url = URL.createObjectURL(blob)
 
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = currentFileObj.name;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    const a = document.createElement("a")
+    a.href = url
+    a.download = currentFileObj.name
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    URL.revokeObjectURL(url)
 }
 

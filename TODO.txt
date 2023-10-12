@@ -11,7 +11,7 @@
 
 -- fix not being able to delete all files
 
-
+-- add scroll bar when to many files in sidebar
 
 
 
