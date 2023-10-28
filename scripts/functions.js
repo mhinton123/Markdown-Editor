@@ -661,9 +661,28 @@ function adjustColumnLayout() {
     }
 }
 
+// toggles 'MARKDOWN' title from sidebar to header based on vw 
+function toggleTitleLocation() {
+    
+    const hdrTitleWrEl = document.getElementById('hdr-title-wr')
+    const sbTitleWrEl = document.getElementById('sb-title-wr')
+    
+    if (window.innerWidth > 900) {
+        sbTitleWrEl.style.display = 'none'
+        hdrTitleWrEl.style.display = 'flex'
+    }
+    else {
+        sbTitleWrEl.style.display = 'flex'
+        hdrTitleWrEl.style.display = 'none'
+    }
+
+}
+
+
 // Attach the function to the resize event of the window
-window.addEventListener('resize', changeInnerTextOnBtns);
-window.addEventListener('resize', adjustColumnLayout);
+window.addEventListener('resize', changeInnerTextOnBtns)
+window.addEventListener('resize', adjustColumnLayout)
+window.addEventListener('resize', toggleTitleLocation);
 
 // Call the function initially to set the text based on the initial viewport width
 changeInnerTextOnBtns();
