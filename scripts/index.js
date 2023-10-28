@@ -56,7 +56,7 @@ document.addEventListener("click", function(e) {
     else if ( e.target.id === "export-file") {
         m.handleExportFileBtn()
     }
-    else if ( e.target.id === "preview-icon" ) {
+    else if ( e.target.id.includes("preview-icon") ) {
         m.handlePreviewBtn()
     }
     else if ( e.target && e.target.classList[0].includes('sb-doc') ) {

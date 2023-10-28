@@ -1,3 +1,7 @@
+body {
+    background-color: white;
+}
+
 .main-hdr {
     background-color: var(--grey-200);
 }

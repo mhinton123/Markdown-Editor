@@ -581,14 +581,89 @@ export function handlePreviewBtn() {
     
     const markdownCol = document.getElementById('markdown-col');
     const previewCol = document.getElementById('preview-col');
+    const previewContent = document.getElementById('preview-content')
     const previewBtn = document.getElementById('preview-icon')
   
-    if (markdownCol.style.display === 'none') {
-      markdownCol.style.display = 'flex';
-      previewBtn.src = '/assets/icon-show-preview.svg'
+    // Mobile Width
+    if (window.innerWidth < 768) {
+        if (markdownCol.style.display === 'none') {
+            markdownCol.style.display = 'flex';
+            previewCol.style.display = 'none';
+            previewBtn.src = '/assets/icon-show-preview.svg'
+          } else {
+            markdownCol.style.display = 'none';
+            previewCol.style.display = 'flex';
+            previewCol.style.maxWidth = '100%';
+            previewBtn.src = '/assets/icon-hide-preview.svg'
+          }
+    }
+    else if (window.innerWidth > 900) {
+        if (markdownCol.style.display === 'none') {
+            markdownCol.style.display = 'flex';
+            previewCol.style.display = 'flex';
+            previewContent.style.maxWidth = '100%';
+            previewContent.style.margin = '0'
+            previewBtn.src = '/assets/icon-show-preview.svg'
+          } else {
+            markdownCol.style.display = 'none';
+            previewCol.style.display = 'flex';
+            previewCol.style.maxWidth = '100%';
+            previewContent.style.maxWidth = '870px';
+            previewContent.style.margin = '0 auto'
+            previewBtn.src = '/assets/icon-hide-preview.svg'
+          }
+    }
+    else {
+        if (markdownCol.style.display === 'none') {
+            markdownCol.style.display = 'flex';
+            previewBtn.src = '/assets/icon-show-preview.svg'
+          } else {
+            markdownCol.style.display = 'none';
+            previewCol.style.display = 'flex';
+            previewCol.style.maxWidth = '100%';
+            previewBtn.src = '/assets/icon-hide-preview.svg'
+          }
+    }
+    
+}
+
+// Adds text to buttons when vw > 768
+function changeInnerTextOnBtns() {
+    let exportBtn = document.getElementById('export-file')
+    let saveBtn = document.getElementById('save-doc-btn')
+
+    if (window.innerWidth < 768) { 
+        exportBtn.innerText = ''
+        saveBtn.innerText = ''
     } else {
-      markdownCol.style.display = 'none';
-      previewCol.style.maxWidth = '100%';
-      previewBtn.src = '/assets/icon-hide-preview.svg'
+        exportBtn.innerText = 'Export File'
+        saveBtn.innerText = 'Save Changes'
     }
 }
+
+// Adjusts column layout based on mobile and larger layouts
+function adjustColumnLayout() {
+    
+    const markdownCol = document.getElementById('markdown-col')
+    const previewCol = document.getElementById('preview-col')
+
+    // Mobile layout
+    if (window.innerWidth < 768) {
+        previewCol.style.display = 'none'
+        markdownCol.style.display = 'flex'
+        markdownCol.style.width = '100%'
+    }
+    else {
+        previewCol.style.display = 'flex'
+        markdownCol.style.display = 'flex'
+        previewCol.style.width = '50%'
+        markdownCol.style.width = '50%'
+    }
+}
+
+// Attach the function to the resize event of the window
+window.addEventListener('resize', changeInnerTextOnBtns);
+window.addEventListener('resize', adjustColumnLayout);
+
+// Call the function initially to set the text based on the initial viewport width
+changeInnerTextOnBtns();
