@@ -363,7 +363,7 @@ export function handleSaveChangesBtn(){
     const updatedFileContent = document.getElementById("markdown-input").value
     const updatedFileName = document.getElementById("file-name").value
     let filesObjArr = getFilesFromLocalStorage()
-    
+
     // Check file name is > 0 & < 25 chars
     if ( updatedFileName.length < 4 ) {
         diplayPopupMsg("'Document Name' must have atleast 1 character")
@@ -374,7 +374,7 @@ export function handleSaveChangesBtn(){
     else if ((!updatedFileName.includes(".md"))) {
         diplayPopupMsg("'Document Name' must include '.md' extension")
     }
-    else if ((filesObjArr.filter(file => file.name === updatedFileName)).length === 1) {
+    else if (currentFileName != updatedFileName && ((filesObjArr.filter(file => file.name === updatedFileName)).length === 1)) {
         diplayPopupMsg("'Document Name' already exists")
     }
     else {
