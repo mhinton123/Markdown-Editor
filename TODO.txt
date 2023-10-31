@@ -1,21 +1,8 @@
 
 bugs
 
-# saving changes to the body of a file causes "file aready exists"
-
 # when saving a file, it defaults to the top file
 
-
-
-if viewport width > 900px 
-
-    .sb-title-wr inner HTML = ''
-    .hdr-title-wr innerHTML = '<h1 class="heading-l">MARKDOWN</h1>'
-
-else 
-
-    .sb-title-wr inner HTML = '<h1 class="heading-l">MARKDOWN</h1>'
-    .hdr-title-wr innerHTML = ''
 
 
 
